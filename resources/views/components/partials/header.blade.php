@@ -11,7 +11,8 @@
                 <div class="top-right clearfix">
                     <ul class="top-info clearfix">
                         <li><a href="tel:+11234567890"><i class="icon far fa-phone"></i> +1 123 456 7890</a></li>
-                        <li><a href="mailto:booking@restaurant.com"><i class="icon far fa-envelope"></i>booking@res.com</a></li>
+                        <li><a href="mailto:booking@restaurant.com"><i class="icon far fa-envelope"></i>booking@res.com</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -30,24 +31,11 @@
                     <div class="nav-outer clearfix">
                         <nav class="main-menu">
                             <ul class="navigation clearfix">
-                                <li class="{{ request()->routeIs('client.about-us') ? 'current' : '' }}">
-                                    <a href="{{ route('client.about-us') }}">Giới thiệu</a>
-                                </li>
-                                <li class="{{ request()->routeIs('client.menu') ? 'current' : '' }}">
-                                    <a href="{{ route('client.menu') }}">Thực đơn nhà hàng</a>
-                                </li>
-                                <li class="{{ request()->routeIs('client.order-online') ? 'current' : '' }}">
-                                    <a href="{{ route('client.order-online') }}">Đặt món online</a>
-                                </li>
-                                <li class="{{ request()->routeIs('client.gallery') ? 'current' : '' }}">
-                                    <a href="{{ route('client.gallery') }}">Thư viện ảnh</a>
-                                </li>
-                                <li class="{{ request()->routeIs('client.contact') ? 'current' : '' }}">
-                                    <a href="{{ route('client.contact') }}">Liên hệ</a>
-                                </li>
-                                <li class="{{ request()->routeIs('client.book-table') ? 'current' : '' }}">
-                                    <a href="{{ route('client.book-table') }}">Đặt bàn</a>
-                                </li>
+                                @foreach(config('menu.main') as $item)
+                                    <li class="{{ request()->routeIs($item['route']) ? 'current' : '' }}">
+                                        <a href="{{ route($item['route']) }}">{{$item['label']}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </nav>
                     </div>
@@ -55,20 +43,20 @@
                     <div class="links-box clearfix">
                         @guest
                             <div class="link link-btn">
-                                <a href="{{ route('login') }}" class="theme-btn btn-style-two auth-btn-header clearfix">
-                <span class="btn-wrap">
-                    <span class="text-one">Đăng nhập</span>
-                    <span class="text-two">Đăng nhập</span>
-                </span>
+                                <a href="{{ route('login') }}" class="theme-btn btn-style-two auth-btn-header clearfix px-2">
+                                    <span class="btn-wrap">
+                                        <span class="text-one">Đăng nhập</span>
+                                        <span class="text-two">Đăng nhập</span>
+                                    </span>
                                 </a>
                             </div>
 
                             <div class="link link-btn ml-2">
                                 <a href="{{ route('register') }}" class="theme-btn btn-style-one auth-btn-header clearfix">
-                <span class="btn-wrap">
-                    <span class="text-one">Đăng ký</span>
-                    <span class="text-two">Đăng ký</span>
-                </span>
+                                    <span class="btn-wrap">
+                                        <span class="text-one">Đăng ký</span>
+                                        <span class="text-two">Đăng ký</span>
+                                    </span>
                                 </a>
                             </div>
                         @endguest
@@ -79,12 +67,13 @@
                                     <i class="icon far fa-user-circle"></i> {{ auth()->user()->name }}
                                 </a>
                                 <div class="dropdown-menu auth-dropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">Tài khoản</a>
+                                    @foreach(config('menu.customer') as $item)
+                                        <a wire:navigate class="dropdown-item" href="{{ route($item['route']) }}">{{ $item['label'] }}</a>
+                                    @endforeach
                                     <div class="dropdown-divider"></div>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">Đăng xuất</button>
-                                    </form>
+                                    <a href="{{ route('logout') }}" class="logout-btn dropdown-item" data-confirm-delete="true">
+                                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                    </a>
                                 </div>
                             </div>
                         @endauth

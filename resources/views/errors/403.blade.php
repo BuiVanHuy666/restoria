@@ -1,8 +1,5 @@
-<x-layouts.app title="Truy cập bị hạn chế | Restoria">
-    <x-slot name="title">403 - Truy cập bị hạn chế | Restoria</x-slot>
-
+<x-layouts.app title="Truy cập bị hạn chế">
     <section class="inner-banner">
-        <div class="image-layer" style="background-image: url({{ asset('images/background/footer-bg.jpg') }});"></div>
         <div class="auto-container">
             <div class="inner">
                 <div class="subtitle"><span style="color: #ff4d4d;">Quyền truy cập bị từ chối</span></div>

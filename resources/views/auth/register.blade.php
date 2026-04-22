@@ -9,12 +9,24 @@
         Đã có tài khoản? <a href="{{ route('login') }}">Đăng nhập ngay tại đây</a>
     </x-slot>
 
-    <form method="POST" action="{{ route('register') }}" id="register-form" novalidate>
+    <div class="form-group col-lg-12 col-md-12 col-sm-12 p-0">
+        <div class="field-inner">
+            <a href="{{ url('auth/google') }}" class="theme-btn btn-style-two btn-google clearfix w-100">
+                <span class="btn-wrap">
+                    <span class="text-one"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
+                    <span class="text-two"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
+                </span>
+            </a>
+            <div class="text-center text-white my-3"><small>— HOẶC —</small></div>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ route('register.store') }}" id="register-form" novalidate>
         @csrf
         <div class="row clearfix">
             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Họ và Tên của bạn" required autofocus>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Họ và Tên của bạn" autofocus>
                     @error('name')
                     <span class="text-danger mt-1 d-block"><small>{{ $message }}</small></span>
                     @enderror
@@ -23,7 +35,7 @@
 
             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Địa chỉ Email" required>
+                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Địa chỉ Email">
                     @error('email')
                     <span class="text-danger mt-1 d-block"><small>{{ $message }}</small></span>
                     @enderror
@@ -32,8 +44,8 @@
 
             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                    <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="Số điện thoại" required>
-                    @error('phone')
+                    <input type="tel" name="phone_number" value="{{ old('phone_number') }}" placeholder="Số điện thoại">
+                    @error('phone_number')
                     <span class="text-danger mt-1 d-block"><small>{{ $message }}</small></span>
                     @enderror
                 </div>
@@ -41,7 +53,7 @@
 
             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                    <input type="password" name="password" placeholder="Mật khẩu" required>
+                    <input type="password" name="password" placeholder="Mật khẩu">
                     @error('password')
                     <span class="text-danger mt-1 d-block"><small>{{ $message }}</small></span>
                     @enderror
@@ -50,7 +62,7 @@
 
             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                    <input type="password" name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
+                    <input type="password" name="password_confirmation" placeholder="Xác nhận mật khẩu">
                 </div>
             </div>
 

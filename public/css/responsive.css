@@ -1,7 +1,7 @@
 @media only screen and (max-width: 7000px){
 
 	.page-wrapper{
-		overflow:hidden;	
+		overflow:hidden;
 	}
 }
 
@@ -23,7 +23,7 @@
 		display: none;
 	}
 
-	
+
 	/* main header */
 	.main-header .header-upper .links-box,
 	.main-menu .navigation > li,
@@ -128,7 +128,7 @@
 	}
 
 	.about-section .floating-images {
-		height: 100px; 
+		height: 100px;
 	}
 
 
@@ -138,6 +138,16 @@
 	}
 
 
+}
+
+@media only screen and (max-width: 1277px) {
+    .main-menu .navigation > li > a {
+        font-size: 11px;
+    }
+
+    .main-menu .navigation > li {
+        margin-left: 20px;
+    }
 }
 
 @media only screen and (max-width: 1199px){
@@ -234,7 +244,7 @@
 		display: none;
 	}
 
-	
+
 	/* offer */
 	.we-offer-section .row{
 		margin: 0 -20px;
@@ -377,7 +387,7 @@
 	.chef-section-1 .chef-image.image2 img,
 	.chef-section-1 .chef-image.image3 img {
 		max-width: 75%;
-	
+
 	}
 
 
@@ -490,7 +500,7 @@
 		font-size: 26px;
 	}
 
-	
+
 	/* Banner Slider Section */
 	.banner-text-top h1{
 		font-size: 55px;
@@ -534,19 +544,19 @@
 	}
 
 	.main-header .header-upper .links-box{
-		
+
 	}
 
 	.main-header .header-upper .links-box .link{
 		margin-left: 20px;
 	}
 
-	
+
 	/* testimonial */
 	.testimonials-section .state-col, .rating-col {
 		margin-top: 50px;
 	}
-	
+
 	.testimonials-section .state-col::after {
 		content: "";
 		position: absolute;
@@ -744,7 +754,7 @@
 	.fluid-section .image-col .image{
 		display: block;
 	}
-	
+
 
 	/* service */
 	.services-section .s-col{
@@ -807,7 +817,7 @@
 	}
 
 
-	/* menu card style */ 
+	/* menu card style */
 	.menu-card-main::before {
 		display: none;
 	}
@@ -972,7 +982,7 @@
 
 	/* why us */
 	.fact-counter .fact-block .inner {
-		padding-bottom: 30px; 
+		padding-bottom: 30px;
 	}
 
 
@@ -1113,7 +1123,7 @@
 		margin-top: 0;
 	}
 
-	
+
 	/* offer */
 	.offer-block {
     	justify-content: center !important;
@@ -1153,7 +1163,7 @@
 	.about-section {
 		padding-bottom: 0;
 	}
-	
+
 	.about-section .title-box h2 {
 		font-size: 35px;
 	}
@@ -1475,7 +1485,7 @@
 
 	/* footer */
 	.main-footer .footer-image-col.last {
-		display: none;	
+		display: none;
 	}
 
 	footer .bottom_footer {
@@ -1486,23 +1496,23 @@
 		padding: 0 0 20px 0;
 	}
 
-	footer .bottom_footer .developer_text { 
-		text-align: center; 
-		margin-top: 10px; 
+	footer .bottom_footer .developer_text {
+		text-align: center;
+		margin-top: 10px;
 	}
 
-	footer .top_footer .social_media { 
-		justify-content: center; 
-		padding: 10px 0; 
+	footer .top_footer .social_media {
+		justify-content: center;
+		padding: 10px 0;
 	}
 
-    footer .top_footer .social_media li a { 
-    	margin: 0 5px; 
+    footer .top_footer .social_media li a {
+    	margin: 0 5px;
     }
 
-    footer .bottom_footer .developer_text { 
-    	text-align: center; 
-    	margin-top: 10px; 
+    footer .bottom_footer .developer_text {
+    	text-align: center;
+    	margin-top: 10px;
     }
 
 
@@ -1676,8 +1686,8 @@
 
 
 	/* footr */
-	.main-footer .info-col .newsletter-form .form-group input[type="text"], 
-	.main-footer .info-col .newsletter-form input[type="email"], 
+	.main-footer .info-col .newsletter-form .form-group input[type="text"],
+	.main-footer .info-col .newsletter-form input[type="email"],
 	.main-footer .info-col .newsletter-form input[type="password"]{
 		padding-right: 30px;
 		padding-left: 30px;
@@ -1809,7 +1819,7 @@
     	padding: 0 30px;
     }
 
-	
+
 	/* testimonial */
 	.testimonials-section .testi-top .quote-text{
 		font-size: 18px;
@@ -1888,16 +1898,16 @@
 		margin-left: -50px;
 		width: 100px;
 	}
-	
+
 	.menu-tabs .dish-block .title::before{
 		display:none;
 	}
-	
+
 	.menu-tabs .dish-block .title .ttl{
 		width:100%;
 		padding-right:0px;
 	}
-	
+
 	.menu-tabs .dish-block .title .ttl .s-info{
 		width:80px;
 		display:block;
@@ -1905,11 +1915,11 @@
 		margin-top:10px;
 		text-align:center;
 	}
-	
+
 	.menu-tabs .dish-block .inner-box{
 		padding-top:0px;
 	}
-	
+
 	.menu-tabs .dish-block .title .price,
 	.menu-two .dish-block .title .price{
 		position:relative;
@@ -1917,14 +1927,14 @@
 		float:left;
 		padding-left:0px;
 	}
-	
+
 
 	/* menu two */
 	.menu-two .dish-block .title .ttl{
 		width:100%;
 		padding-right:0px;
 	}
-	
+
 	.menu-two .dish-block .title .ttl .s-info{
 		left:-10px;
 		width:75px;
@@ -1974,11 +1984,11 @@
 	.reserve-section.splitscreen .reserv-col .inner {
 		padding:80px 50px;
 	}
-	
+
 }
 
 @media only screen and (max-width: 399px) {
-	
+
 	/* menu two */
 	.menu-two .dish-block .title .ttl a{
 		width:150px;
@@ -2007,5 +2017,5 @@
 		width: 70px;
 	}
 
-	
+
 }
