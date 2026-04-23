@@ -71,9 +71,13 @@
                                         <a wire:navigate class="dropdown-item" href="{{ route($item['route']) }}">{{ $item['label'] }}</a>
                                     @endforeach
                                     <div class="dropdown-divider"></div>
-                                    <a href="{{ route('logout') }}" class="logout-btn dropdown-item" data-confirm-delete="true">
-                                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                                    </a>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" href="{{ route('logout') }}" class="logout-btn dropdown-item" data-confirm-delete="true">
+                                                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                            </button>
+                                        </form>
                                 </div>
                             </div>
                         @endauth

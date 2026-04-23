@@ -11,7 +11,7 @@
 
     <div class="form-group col-lg-12 col-md-12 col-sm-12 p-0">
         <div class="field-inner">
-            <a href="{{ url('auth/google') }}" class="theme-btn btn-style-two btn-google clearfix w-100">
+            <a href="{{ route('social.login', 'google') }}" class="theme-btn btn-style-two btn-google clearfix w-100">
                 <span class="btn-wrap">
                     <span class="text-one"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
                     <span class="text-two"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
