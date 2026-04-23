@@ -231,7 +231,7 @@
 }
 
 .fixed-header .main-menu .navigation > li {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 .main-header.fixed-header .main-menu .navigation > li > ul {
@@ -352,7 +352,7 @@
     position: static;
     display: block;
     float: left;
-    padding: 30px 0px;
+    padding: 30px 0;
     margin-left: 50px;
     -webkit-transition: all 300ms ease;
     -moz-transition: all 300ms ease;
@@ -364,11 +364,11 @@
 .main-menu .navigation > li > a {
     position: relative;
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--white-color);
     padding-top: 20px;
     padding-bottom: 20px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 30px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -6585,6 +6585,387 @@ footer .bottom_footer .social_media li a:hover {
     font-size: 13px;
     margin-top: 5px;
     display: block;
+}
+
+/***
+====================================================================
+  Customer Dashboard Section
+====================================================================
+***/
+
+.customer-dashboard-section {
+    padding: 120px 0 !important;
+}
+
+.customer-dashboard-outer {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid var(--main-color);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* Cột Sidebar */
+.customer-sidebar {
+    padding: 30px 20px;
+}
+
+.customer-sidebar .user-info {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.customer-sidebar .user-info .user-name {
+    font-family: var(--font-family-SF-Pro), sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--white-color);
+    margin-bottom: 5px;
+}
+
+.customer-sidebar .user-info .user-role {
+    color: var(--main-color);
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+/* Menu điều hướng Sidebar */
+.customer-sidebar .user-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.customer-sidebar .user-menu li {
+    margin-bottom: 5px;
+}
+
+.customer-sidebar .user-menu li a {
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border-left: 3px solid transparent;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.customer-sidebar .user-menu li a i {
+    width: 20px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.customer-sidebar .user-menu li a:hover,
+.customer-sidebar .user-menu li a.active {
+    color: var(--main-color);
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--main-color);
+    font-weight: 600;
+}
+
+.customer-sidebar .user-menu hr {
+    border-color: rgba(255, 255, 255, 0.2);
+    margin: 15px 0;
+}
+
+.customer-sidebar .user-menu .logout-btn {
+    display: block;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.customer-sidebar .user-menu .logout-btn:hover {
+    background: rgba(255, 77, 77, 0.1);
+}
+
+/* Khu vực nội dung Content */
+.customer-dashboard-content {
+    padding: 10px 40px;
+    min-height: 500px;
+}
+
+.customer-dashboard-content .content-header {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+}
+
+.customer-dashboard-content .content-header h3 {
+    color: var(--white-color);
+    font-family: var(--font-family-SF-Pro), sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.customer-dashboard-content .content-header p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+}
+
+.glass-widget-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--main-color);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.glass-widget-box .widget-title {
+    color: var(--main-color);
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.glass-widget-box.border-info .widget-title {
+    color: #17a2b8;
+}
+
+.glass-widget-box .widget-info-list {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.glass-widget-box .widget-info-list p {
+    margin-bottom: 10px;
+}
+
+.glass-widget-box .widget-info-list strong {
+    color: var(--white-color);
+    display: inline-block;
+    width: 120px;
+}
+
+.glass-widget-box .stat-highlight {
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Thẻ đơn hàng phong cách Restoria */
+.order-card-premium {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.order-card-premium:hover {
+    transform: scale(1.01) translateY(-5px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(210, 163, 73, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.order-id {
+    font-family: var(--font-family-SF-Pro), sans-serif;
+    color: var(--main-color);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.order-date {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.order-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.order-dishes {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 70%;
+}
+
+.order-price-group {
+    text-align: right;
+}
+
+.order-total-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 5px;
+}
+
+.order-total-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Badge trạng thái kiểu Neon mờ */
+.status-pill {
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid currentColor;
+}
+.pill-pending { color: #ffc107; background: rgba(255, 193, 7, 0.1); }
+.pill-completed { color: #28a745; background: rgba(40, 167, 69, 0.1); }
+
+/* Thẻ địa chỉ phong cách Restoria */
+.address-card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.address-card-glass:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(210, 163, 73, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Đánh dấu địa chỉ mặc định */
+.address-card-glass.is-default {
+    border: 1px solid var(--main-color);
+    box-shadow: 0 0 15px rgba(210, 163, 73, 0.1);
+}
+
+.default-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--main-color);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.address-name {
+    font-family: var(--font-family-SF-Pro), sans-serif;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.address-phone {
+    color: var(--main-color);
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.address-detail {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.address-actions {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.address-actions a, .address-actions button {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.address-actions a:hover { color: var(--main-color); }
+.address-actions .btn-delete:hover { color: #ff4d4d; }
+
+/* Style cho Form trong Dashboard */
+.glass-form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.glass-form-label {
+    display: block;
+    color: var(--main-color);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.glass-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
+    color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--main-color) !important;
+    box-shadow: 0 0 10px rgba(210, 163, 73, 0.2) !important;
+    outline: none;
+}
+
+.password-note {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-top: 15px;
 }
 
 /***

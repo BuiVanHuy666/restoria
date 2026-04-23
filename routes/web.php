@@ -31,3 +31,4 @@ Route::get('/dat-ban', function () {
 })->name('client.book-table');
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/customer.php';

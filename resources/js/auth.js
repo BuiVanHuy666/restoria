@@ -5,9 +5,10 @@ const validationRules = {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim())) return 'Email không đúng định dạng.';
         return null;
     },
-    phone: (val) => {
-        if (val.trim() === "") return 'Vui lòng nhập số điện thoại.';
-        if (!/^(0|84)(3|5|7|8|9)([0-9]{8})$/.test(val.trim())) return 'Số điện thoại không hợp lệ.';
+    phone_number: (val) => {
+        if (val.trim() !== "") {
+            if (!/^(0|84)(3|5|7|8|9)([0-9]{8})$/.test(val.trim())) return 'Số điện thoại không hợp lệ.';
+        }
         return null;
     },
     password: (val) => val.length < 8 ? 'Mật khẩu phải chứa ít nhất 8 ký tự.' : null,

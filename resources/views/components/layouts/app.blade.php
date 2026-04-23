@@ -31,6 +31,7 @@
     {{ $slot }}
 
     <x-partials.footer/>
+    @include('sweetalert::alert')
 </div>
 
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon fa fa-angle-up"></span></div>
@@ -46,5 +47,7 @@
 <script src="{{ asset('js/wow.js') }}"></script>
 <script src="{{ asset('js/parallax.min.js') }}"></script>
 <script src="{{ asset('js/custom-script.js') }}"></script>
+
+@stack('scripts')
 </body>
 </html>

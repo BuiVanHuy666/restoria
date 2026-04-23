@@ -7,23 +7,11 @@
 
         <div class="side-menu">
             <ul class="navigation clearfix">
-
-                <li class="{{ request()->routeIs('client.about-us') ? 'current' : '' }}">
-                    <a href="{{ route('client.about-us') }}">Giới thiệu</a>
-                </li>
-                <li class="{{ request()->routeIs('client.menu') ? 'current' : '' }}">
-                    <a href="{{ route('client.menu') }}">Thực đơn nhà hàng</a>
-                </li>
-                <li class="{{ request()->routeIs('client.order-online') ? 'current' : '' }}">
-                    <a href="{{ route('client.order-online') }}">Đặt món online</a>
-                </li>
-                <li class="{{ request()->routeIs('client.gallery') ? 'current' : '' }}">
-                    <a href="{{ route('client.gallery') }}">Thư viện ảnh</a>
-                </li>
-                <li class="{{ request()->routeIs('client.contact') ? 'current' : '' }}">
-                    <a href="{{ route('client.contact') }}">Liên hệ</a>
-                </li>
-                <li><a href="{{ route('client.book-table') }}">Đặt bàn</a></li>
+                @foreach(config('menu.main') as $item)
+                    <li class="{{ request()->routeIs($item['route']) ? 'current' : '' }}">
+                        <a href="{{ route($item['route']) }}">{{ $item['label'] }}</a>
+                    </li>
+                @endforeach
             </ul>
         </div>
 

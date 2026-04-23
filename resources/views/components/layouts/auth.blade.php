@@ -41,18 +41,6 @@
                             </div>
 
                             <div class="default-form reservation-form">
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12 p-0">
-                                    <div class="field-inner">
-                                        <a href="{{ url('auth/google') }}" class="theme-btn btn-style-two btn-google clearfix w-100">
-                                            <span class="btn-wrap">
-                                                <span class="text-one"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
-                                                <span class="text-two"><i class="fab fa-google mr-2"></i> Đăng nhập bằng Google</span>
-                                            </span>
-                                        </a>
-                                        <div class="text-center text-white my-3"><small>— HOẶC —</small></div>
-                                    </div>
-                                </div>
-
                                 {{ $slot }}
                             </div>
                         </div>

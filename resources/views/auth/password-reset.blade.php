@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('password-reset.store') }}">
         @csrf
         <div class="row clearfix">
             <div class="form-group col-lg-12 col-md-12 col-sm-12">
