@@ -210,14 +210,14 @@
 
 .main-header .main-box {
     position: relative;
-    padding: 0px;
+    padding: 0;
 }
 
 .main-header .main-box .logo-box {
     position: relative;
     display: block;
     float: left;
-    padding: 40px 0px;
+    padding: 40px 0;
     transition: all 300ms ease;
     -moz-transition: all 300ms ease;
     -webkit-transition: all 300ms ease;
@@ -227,7 +227,7 @@
 }
 
 .fixed-header .main-box .logo-box {
-    padding: 20px 0px;
+    padding: 20px 0;
 }
 
 .fixed-header .main-menu .navigation > li {
@@ -239,7 +239,7 @@
 }
 
 .main-header.fixed-header .header-upper .links-box {
-    padding: 15px 0px;
+    padding: 15px 0;
 }
 
 .main-header .main-box .logo-box .logo {
@@ -314,8 +314,8 @@
     background: none;
     color: #e1e1e1;
     font-size: 16px;
-    margin: 0px;
-    border-radius: 0px;
+    margin: 0;
+    border-radius: 0;
     outline: none !important;
 }
 
@@ -333,12 +333,12 @@
 .main-menu {
     position: static;
     display: block;
-    padding: 0px 0px;
+    padding: 0 0;
 }
 
 .main-menu .navbar-collapse {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     border: none;
     box-shadow: none;
 }
@@ -396,7 +396,7 @@
     font-family: "Font Awesome 6 Pro";
     content: "\f107";
     position: absolute;
-    right: 0px;
+    right: 0;
     top: 18px;
     display: block;
     line-height: 30px;
@@ -457,11 +457,11 @@
     background: var(--color-two);
     border: none;
     border-radius: 0;
-    -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -ms-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -o-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -moz-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -ms-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -o-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
     -webkit-transform: translateY(20px);
     -ms-transform: translateY(20px);
     transform: translateY(20px);
@@ -610,7 +610,7 @@
     content: "\f105";
     position: absolute;
     right: 30px;
-    top: 0px;
+    top: 0;
     display: block;
     line-height: 30px;
     font-size: 12px;
@@ -679,11 +679,11 @@
     background: var(--color-two);
     border: none;
     border-radius: 0;
-    -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -ms-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -o-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    -moz-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
-    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0px 10px 1px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -ms-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -o-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.03), -2px 0 10px 1px rgba(0, 0, 0, 0.03);
     -webkit-transform: translateY(20px);
     -ms-transform: translateY(20px);
     transform: translateY(20px);
@@ -760,7 +760,7 @@
     content: "\f105";
     position: absolute;
     right: 30px;
-    top: 0px;
+    top: 0;
     display: block;
     line-height: 30px;
     font-size: 12px;
@@ -856,7 +856,7 @@ body.visible-sidebar {
 .hidden-bar ul,
 .hidden-bar ul li {
     list-style-type: none;
-    margin: 0px;
+    margin: 0;
 }
 
 .hidden-bar .inner-box {
@@ -1060,7 +1060,7 @@ body.visible-sidebar {
 .hidden-bar .side-menu ul li > a:before {
     content: "";
     position: absolute;
-    left: 0px;
+    left: 0;
     top: 50%;
     margin-top: -4px;
     height: 12px;
@@ -1096,7 +1096,7 @@ body.visible-sidebar {
 .hidden-bar .side-menu ul li .btn-expander {
     position: absolute;
     top: 10px;
-    right: 0px;
+    right: 0;
     background: none;
     color: var(--white-color);
     font-size: 12px;
@@ -1104,7 +1104,7 @@ body.visible-sidebar {
     width: 30px;
     text-align: right;
     line-height: 30px;
-    border-radius: 0px;
+    border-radius: 0;
     outline: none;
     cursor: pointer;
     z-index: 1;
@@ -1126,7 +1126,7 @@ body.visible-sidebar {
 .info-bar {
     position: fixed;
     right: -440px;
-    top: 0px;
+    top: 0;
     width: 100%;
     max-width: 440px;
     height: 100%;
@@ -1144,8 +1144,8 @@ body.visible-sidebar {
 
 .info-back-drop {
     position: fixed;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -1165,7 +1165,7 @@ body.visible-sidebar {
 }
 
 .side-content-visible .info-bar {
-    right: 0px;
+    right: 0;
     opacity: 1;
     visibility: visible;
 }
@@ -1362,7 +1362,7 @@ body.visible-sidebar {
 .banner-section .slide-item {
     position: relative;
     width: 100%;
-    padding: 0px;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -2132,7 +2132,7 @@ body.visible-sidebar {
     content: "";
     left: 5px;
     right: 5px;
-    bottom: 0px;
+    bottom: 0;
     height: 5px;
     opacity: 0;
     transform: scale(0.2, 1);
@@ -2361,7 +2361,7 @@ body.visible-sidebar {
 .tabs-box .tabs-content:before {
     content: "";
     position: absolute;
-    left: 0px;
+    left: 0;
     right: auto;
     top: 0;
     width: 70px;
@@ -2389,7 +2389,7 @@ body.visible-sidebar {
 .menu-tabs .buttons {
     position: relative;
     padding-bottom: 25px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .menu-tabs .buttons .tab-buttons {
@@ -3556,10 +3556,10 @@ body.visible-sidebar {
 .team-block .overlay-box {
     position: absolute;
     content: "";
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 
     display: flex;
     justify-content: center;
@@ -3587,10 +3587,10 @@ body.visible-sidebar {
 .team-block .overlay-box:before {
     position: absolute;
     content: "";
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     opacity: 0.40;
     background-color: var(--main-color);
     border-radius: 400px 400px 0 0;
@@ -3616,7 +3616,7 @@ body.visible-sidebar {
 
 .team-block .social-box li {
     position: relative;
-    margin: 0px 1px;
+    margin: 0 1px;
     display: inline-block;
     font-family: "Font Awesome 6 Pro";
 }
@@ -3933,7 +3933,7 @@ body.visible-sidebar {
     padding: 15px;
     border: 1px solid var(--white-color-opacity-four);
     background-color: var(--color-one);
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .comment_form_section form .form-group .form-control::placeholder {
@@ -4180,7 +4180,7 @@ body.visible-sidebar {
     padding: 10px 20px 10px 40px;
     background-color: var(--color-one);
     border: 1px solid var(--color-four);
-    border-radius: 0px;
+    border-radius: 0;
     -webkit-transition: all 300ms ease;
     -ms-transition: all 300ms ease;
     -o-transition: all 300ms ease;
@@ -4327,14 +4327,14 @@ footer .bottom_footer .social_media li a:hover {
     color: var(--main-color);
     font-size: 12px;
     letter-spacing: 0.40em;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .inner-banner .inner h1 {
     position: relative;
     text-transform: none;
     line-height: 1.0em;
-    margin: 0px 0px;
+    margin: 0 0;
     display: inline-block;
     vertical-align: top;
 }
@@ -4477,7 +4477,7 @@ footer .bottom_footer .social_media li a:hover {
 }
 
 .fluid-section.alternate .content-col .link-box {
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 /***
@@ -5152,10 +5152,10 @@ footer .bottom_footer .social_media li a:hover {
 .chef-section-1 .round-stamp:before {
     position: absolute;
     content: "";
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background: url(../images/resource/chefbadge.png) no-repeat;
 }
 
@@ -6451,7 +6451,7 @@ footer .bottom_footer .social_media li a:hover {
 }
 
 .chef-section.alternate .content-col .link-box {
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 .intro-section.quote {
@@ -6462,7 +6462,7 @@ footer .bottom_footer .social_media li a:hover {
 
 .chef-section .image-col .round-stamp-2 {
     position: absolute;
-    right: 0px;
+    right: 0;
     top: 65px;
     z-index: 3;
     width: 133px;
@@ -6481,10 +6481,10 @@ footer .bottom_footer .social_media li a:hover {
 .chef-section .image-col .round-stamp-2:before {
     position: absolute;
     content: "";
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background: url(../images/resource/chefbadge.png) no-repeat;
 }
 
@@ -6968,6 +6968,142 @@ footer .bottom_footer .social_media li a:hover {
     margin-top: 15px;
 }
 
+/* ====================================================================
+   RESTORIA REUSABLE MODAL (Bootstrap Style)
+==================================================================== */
+/* Keyframes cho modal */
+@keyframes restoria-backdrop-in {
+    from { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+    to   { opacity: 1; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+}
+
+@keyframes restoria-dialog-in {
+    0%   { opacity: 0; transform: translateY(40px) scale(0.95); }
+    60%  { opacity: 1; transform: translateY(-6px) scale(1.01); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes restoria-dialog-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(30px) scale(0.95); }
+}
+
+/* Stagger animation cho từng field bên trong modal */
+@keyframes restoria-field-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer chạy trên viền vàng */
+@keyframes restoria-border-shimmer {
+    0%   { opacity: 0.5; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.restoria-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+    overflow-y: auto;
+    padding: 20px;
+    transition: opacity 0.25s ease, backdrop-filter 0.35s ease;
+}
+
+/* Khi có class .show, modal sẽ hiện ra */
+.restoria-modal.show {
+    display: flex;
+    animation: restoria-backdrop-in 0.35s ease forwards;
+    opacity: 1;
+}
+
+.restoria-modal-dialog {
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+
+.restoria-modal.show .restoria-modal-dialog {
+    animation: restoria-dialog-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s forwards;
+}
+
+.restoria-modal-content {
+    position: relative;
+    background-color: var(--color-two);
+    background-image: url('../images/resource/pattern-dark.png');
+    background-repeat: repeat;
+    padding: 50px 40px;
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 40px rgba(210, 163, 73, 0.08);
+}
+
+/* Viền vàng đặc trưng của Restoria — có shimmer */
+.restoria-modal-content::before {
+    content: "";
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid var(--main-color);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.restoria-modal.show .restoria-modal-content::before {
+    animation: restoria-border-shimmer 2.5s ease-in-out 0.5s infinite;
+}
+
+/* Stagger từng form-group bên trong */
+.restoria-modal.show .restoria-modal-content .form-group:nth-child(1) {
+    animation: restoria-field-in 0.4s ease 0.3s both;
+}
+.restoria-modal.show .restoria-modal-content .form-group:nth-child(2) {
+    animation: restoria-field-in 0.4s ease 0.38s both;
+}
+.restoria-modal.show .restoria-modal-content .form-group:nth-child(3) {
+    animation: restoria-field-in 0.4s ease 0.46s both;
+}
+.restoria-modal.show .restoria-modal-content .form-group:nth-child(4) {
+    animation: restoria-field-in 0.4s ease 0.54s both;
+}
+
+/* Title cũng fade in */
+.restoria-modal.show .title-box {
+    animation: restoria-field-in 0.4s ease 0.15s both;
+}
+
+.restoria-modal-close {
+    position: absolute;
+    top: 25px; right: 25px;
+    background: var(--color-two);
+    border: 1px solid var(--main-color);
+    border-radius: 50%;
+    width: 35px; height: 35px;
+    color: var(--white-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+}
+
+.restoria-modal.show .restoria-modal-close {
+    animation: restoria-field-in 0.35s ease 0.4s both;
+}
+
+.restoria-modal-close:hover {
+    background: var(--main-color);
+    color: var(--color-one);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 14px rgba(210, 163, 73, 0.45);
+}
+
 /***
 
 ====================================================================
@@ -7049,4 +7185,122 @@ html:not(.body-menu-opened) .hamburger .bottom-bun {
     100% {
         width: 100%;
     }
+}
+
+/* ====================================================================
+   FIX: Input styling inside Restoria Modal
+==================================================================== */
+.restoria-modal-content .field-inner input[type="text"],
+.restoria-modal-content .field-inner input[type="email"],
+.restoria-modal-content .field-inner input[type="password"],
+.restoria-modal-content .field-inner input[type="tel"],
+.restoria-modal-content .field-inner input {
+    width: 100%;
+    display: block;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    padding: 13px 20px !important;
+    color: #ffffff !important;
+    font-size: 15px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.restoria-modal-content .field-inner input::placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
+    font-style: normal;
+}
+
+.restoria-modal-content .field-inner input:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--main-color) !important;
+    box-shadow: 0 0 12px rgba(210, 163, 73, 0.25) !important;
+}
+
+.restoria-modal-content .field-inner.has-error input {
+    border-color: #ff4d4d !important;
+    background: rgba(255, 77, 77, 0.06) !important;
+}
+
+/* Xoá padding-right thừa (icon password) nếu không dùng toggle */
+.restoria-modal-content .field-inner input[type="text"] {
+    padding-right: 20px !important;
+}
+
+.text-primary {
+    color: var(--main-color) !important;
+}
+/* ==========================================================================
+   RESTORIA CUSTOM SELECT BOX (GLASSMORPHISM) - CLEAN VERSION
+   ========================================================================== */
+
+/* 1. ĐỊNH DẠNG GỐC DÙNG CHUNG CHO MỌI NƠI */
+.glass-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--white-color) !important;
+
+    height: 60px !important;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    padding: 10px 45px 10px 20px !important;
+
+    /* Mũi tên custom */
+    background: rgba(255, 255, 255, 0.06) url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 20px center !important;
+    background-size: 16px !important;
+}
+
+/* Hiệu ứng Focus chung */
+.glass-select:focus {
+    border-color: var(--main-color) !important;
+    box-shadow: none !important; /* Đã tắt box-shadow theo ý bạn ở modal */
+}
+
+/* Trạng thái khóa (Disabled) chung */
+.glass-select:disabled,
+.glass-select[readonly] {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+/* Trạng thái chưa lưu (Livewire) chung */
+.glass-select.dirty-input {
+    border-color: #ffc107 !important;
+    background-color: rgba(255, 193, 7, 0.05) !important;
+}
+
+/* Style cho danh sách xổ xuống mặc định */
+.glass-select option {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 15px;
+}
+
+/* 2. CHỈ GHI ĐÈ NHỮNG CÁI KHÁC BIỆT KHI Ở TRONG MODAL */
+.restoria-modal-content select.glass-select option {
+    background-color: #111111; /* Nền tối hơn một chút khi nằm trong Modal */
+}
+
+/* CSS cho nút Lưu */
+.btn-save-address:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(40%);
+    pointer-events: none;
 }

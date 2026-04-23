@@ -31,7 +31,7 @@
     {{ $slot }}
 
     <x-partials.footer/>
-    @include('sweetalert::alert')
+    @include('sweetalert2::index')
 </div>
 
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon fa fa-angle-up"></span></div>

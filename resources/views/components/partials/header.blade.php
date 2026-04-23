@@ -74,7 +74,7 @@
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" href="{{ route('logout') }}" class="logout-btn dropdown-item" data-confirm-delete="true">
+                                            <button type="submit" href="{{ route('logout') }}" class="logout-btn dropdown-item">
                                                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
                                             </button>
                                         </form>

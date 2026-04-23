@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use RealRashid\SweetAlert\Facades\Alert;
+use SweetAlert2\Laravel\Swal;
 
 class AuthenticateService
 {
@@ -19,7 +19,12 @@ class AuthenticateService
         $throttleKey = Str::lower('login-attempt-'.$request->ip());
         if ($this->checkRateLimit($throttleKey)) {
             $seconds = RateLimiter::availableIn($throttleKey);
-            Alert::error('Tạm khóa', "Bạn đã thao tác quá nhiều lần. Vui lòng thử lại sau {$seconds} giây.");
+
+            Swal::error([
+                'title' => 'Thông báo bảo mật',
+                'text' => "Vì lý do an toàn, Quý khách vui lòng đợi {$seconds} giây trước khi thực hiện lượt đăng nhập tiếp theo.",
+                'confirmButtonText' => 'Tôi đã hiểu'
+            ]);
 
             throw ValidationException::withMessages([
                 'email' => "Bạn đã thao tác quá nhiều lần. Vui lòng thử lại sau {$seconds} giây."

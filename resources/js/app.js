@@ -1,3 +1,4 @@
-import { initAuthValidation } from './auth';
+import {initAuthValidation} from './auth';
+import './handle-modal';
 
 initAuthValidation();

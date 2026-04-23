@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Services\Auth\RegisterService;
 use Illuminate\Support\Facades\Log;
-use RealRashid\SweetAlert\Facades\Alert;
+use SweetAlert2\Laravel\Swal;
 
 class RegisterUserController extends Controller
 {
@@ -19,7 +19,12 @@ class RegisterUserController extends Controller
     {
         try {
             $registerService($request->validated());
-            Alert::success('Đăng ký thành công');
+            Swal::success([
+                'title' => 'Khởi tạo tài khoản thành công',
+                'text' => 'Chào mừng Quý khách đến với Restoria. Chúc Quý khách có những trải nghiệm ẩm thực tuyệt vời!',
+                'confirmButtonText' => 'Khám phá ngay'
+            ]);
+
 
             return redirect(route('client.home'));
         } catch (\Exception $exception) {
