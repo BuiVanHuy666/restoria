@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
 
             $table->string('code')->unique();
             $table->string('name');
@@ -23,6 +21,15 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->string('image')->nullable();
             $table->string('status')->default(MenuItemStatus::AVAILABLE->value);
+            $table
+                ->boolean('is_new')->default(false)
+                ->comment('Đánh dấu món ăn mới (1: Có, 0: Không)');
+            $table
+                ->boolean('is_popular')->default(false)
+                ->comment('Đánh dấu món ăn bán chạy/nổi bật (1: Có, 0: Không)');
+            $table
+                ->boolean('is_round_image')->default(false)
+                ->comment('Sử dụng layout ảnh tròn, không có viền bọc (1: Có, 0: Không)');;
 
             $table->timestamps();
         });

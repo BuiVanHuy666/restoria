@@ -3,9 +3,9 @@
 
     <x-pages.homepage.about-section/>
 
-    <x-pages.homepage.menu-section/>
+    <x-pages.homepage.menu-section :categoriesWithItems="$categoriesWithItems"/>
 
-    <x-pages.homepage.special-offer-section/>
+    <x-pages.homepage.special-offer-section :popularItems="$popularItems"/>
 
     <x-pages.homepage.reservation-section/>
 

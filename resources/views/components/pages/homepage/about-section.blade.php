@@ -5,13 +5,13 @@
 
             <h2>Tận hưởng trọn vẹn từng khoảnh khắc với
                 <span class="theme_color">
-                    <img src="{{ asset('images/resource/tag-img1.png') }}" alt="Bữa sáng" title="Bữa sáng"> Bữa sáng
+                    <img src="{{ asset('images/resource/tag-img1.png') }}" alt="Bữa sáng" title="Bữa sáng" loading="lazy"> Bữa sáng
                 </span> hấp dẫn,
                 <span class="theme_color">
-                    <img src="{{ asset('images/resource/tag-img2.png') }}" alt="Món chính" title="Món chính"> Món chính
+                    <img src="{{ asset('images/resource/tag-img2.png') }}" alt="Món chính" title="Món chính" loading="lazy"> Món chính
                 </span> đậm đà
                 & <span class="theme_color">
-                    <img src="{{ asset('images/resource/tag-img3.png') }}" alt="Đồ uống" title="Đồ uống"> Đồ uống
+                    <img src="{{ asset('images/resource/tag-img3.png') }}" alt="Đồ uống" title="Đồ uống" loading="lazy"> Đồ uống
                 </span> sảng khoái
             </h2>
         </div>
@@ -41,13 +41,13 @@
             <div class="inner wow fadeInRight" data-wow-duration="1500ms" data-wow-delay="0ms">
                 <div class="floating-images ">
                     <div class="abt-image1 parallax-scene-1">
-                        <img data-depth="0.50" src="{{ asset('images/resource/about1.jpg') }}" alt="Không gian nhà hàng">
+                        <img data-depth="0.50" src="{{ asset('images/resource/about1.jpg') }}" alt="Không gian nhà hàng" loading="lazy">
                     </div>
                     <div class="abt-image2 parallax-scene-2">
-                        <img data-depth="0.50" src="{{ asset('images/resource/about2.jpg') }}" alt="Món ăn đặc sắc">
+                        <img data-depth="0.50" src="{{ asset('images/resource/about2.jpg') }}" alt="Món ăn đặc sắc" loading="lazy">
                     </div>
                     <div class="abt-image3 parallax-scene-3">
-                        <img data-depth="0.90" src="{{ asset('images/resource/about3.jpg') }}" alt="Đội ngũ đầu bếp">
+                        <img data-depth="0.90" src="{{ asset('images/resource/about3.jpg') }}" alt="Đội ngũ đầu bếp" loading="lazy">
                     </div>
                 </div>
             </div>

@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@restoria.com',
             'role' => 'admin'
         ]);
+
+        $this->call([
+            MenuSeeder::class
+        ]);
     }
 }

@@ -16,19 +16,19 @@
 
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                 <div class="chef-image image1 parallax-scene-1 ">
-                    <img data-depth="0.15" src="{{ asset('images/resource/mainchef1.jpg') }}" alt="Bếp trưởng Lorenzo">
+                    <img data-depth="0.15" src="{{ asset('images/resource/mainchef1.jpg') }}" loading="lazy" alt="Bếp trưởng Lorenzo">
                 </div>
                 <div class="round-stamp">
-                    <img data-depth="0.50" class="stamp_icon" src="{{ asset('images/resource/chefcap.png')}}" alt="Biểu tượng đầu bếp">
+                    <img data-depth="0.50" class="stamp_icon" src="{{ asset('images/resource/chefcap.png')}}" loading="lazy" alt="Biểu tượng đầu bếp">
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                 <div class="chef-image image2 parallax-scene-2">
-                    <img data-depth="0.50" src="{{ asset('images/resource/mainchef2.jpg') }}" alt="Kỹ năng đầu bếp">
+                    <img data-depth="0.50" src="{{ asset('images/resource/mainchef2.jpg') }}" loading="lazy" alt="Kỹ năng đầu bếp">
                 </div>
                 <div class="chef-image image3 parallax-scene-3">
-                    <img data-depth="0.50" src="{{ asset('images/resource/mainchef3.jpg') }}" alt="Món ăn sáng tạo">
+                    <img data-depth="0.50" src="{{ asset('images/resource/mainchef3.jpg') }}" loading="lazy" alt="Món ăn sáng tạo">
                 </div>
             </div>
 

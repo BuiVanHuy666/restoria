@@ -145,11 +145,10 @@ class extends Component {
 
             $this->reset(['editId', 'name', 'sort_order', 'thumbnail', 'existingThumbnailUrl', 'isEditMode']);
             Flux::modal('category-form-modal')->close();
-
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::driver('crud')->error('Lỗi khi tạo danh mục: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::driver('crud')->error('Lỗi khi tạo danh mục: '.$e->getMessage());
             Flux::toast(
-                text: 'Đã xảy ra sự cố: ' . $e->getMessage(),
+                text: 'Đã xảy ra sự cố: '.$e->getMessage(),
                 heading: 'Thất bại!',
                 variant: 'danger',
             );
@@ -173,7 +172,7 @@ class extends Component {
             } catch (\Exception $e) {
                 \Illuminate\Support\Facades\Log::driver('crud')->error('Lỗi khi xóa danh mục', $e->getMessage());
                 Flux::toast(
-                    text: 'Không thể xóa danh mục này: ' . $e->getMessage(),
+                    text: 'Không thể xóa danh mục này: '.$e->getMessage(),
                     heading: 'Lỗi xóa dữ liệu!',
                     variant: 'danger',
                 );
@@ -218,7 +217,8 @@ class extends Component {
                                 <img src="{{ $category->thumbnail_url }}"
                                      wire:click.stop="previewImage('{{ $category->thumbnail_url }}')"
                                      class="w-10 h-10 rounded-md object-cover border border-zinc-200 dark:border-zinc-700 hover:scale-110 transition-transform cursor-zoom-in"
-                                     alt="{{ $category->name }}">
+                                     alt="{{ $category->name }}"
+                                     loading="lazy">
                                 <span class="font-medium">{{ $category->name }}</span>
                             </div>
                         </flux:table.cell>
@@ -254,7 +254,9 @@ class extends Component {
                     <div class="flex items-center gap-4">
                         <img src="{{ $this->selectedCategory->thumbnail_url }}"
                              wire:click="previewImage('{{ $this->selectedCategory->thumbnail_url }}')"
-                             class="w-16 h-16 rounded-lg object-cover border-2 border-white dark:border-zinc-700 shadow-md cursor-zoom-in hover:opacity-80 transition-opacity">
+                             class="w-16 h-16 rounded-lg object-cover border-2 border-white dark:border-zinc-700 shadow-md cursor-zoom-in hover:opacity-80 transition-opacity"
+                             loading="lazy"
+                        >
                         <div>
                             <flux:heading size="xl">{{ $this->selectedCategory->name }}</flux:heading>
                             <flux:subheading>Đường dẫn:
@@ -278,7 +280,10 @@ class extends Component {
                                     <flux:table.row>
                                         <flux:table.cell>
                                             <div class="flex items-center gap-3">
-                                                <img src="{{ $item->thumbnail_url ?? asset('images/default-food.jpg') }}" class="w-8 h-8 rounded object-cover">
+                                                <img wire:click.stop="previewImage('{{ $item->thumbnail_url }}')"
+                                                     src="{{ $item->thumbnail_url ?? asset('images/default-food.jpg') }}"
+                                                     class="w-8 h-8 rounded object-cover"
+                                                     loading="lazy">
                                                 <span class="text-sm font-medium">{{ $item->name }}</span>
                                             </div>
                                         </flux:table.cell>
@@ -344,7 +349,7 @@ class extends Component {
 
                 @if ($thumbnail)
                     <div class="mt-2 p-2 bg-zinc-50 dark:bg-zinc-800 rounded-lg inline-block relative group">
-                        <img src="{{ $thumbnail->temporaryUrl() }}" class="w-16 h-16 object-cover rounded-md border border-emerald-500 shadow-sm" alt="Preview">
+                        <img src="{{ $thumbnail->temporaryUrl() }}" class="w-16 h-16 object-cover rounded-md border border-emerald-500 shadow-sm" alt="Preview" loading="lazy">
                         <span class="absolute -top-2 -right-2 bg-emerald-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">Mới</span>
 
                         <button type="button" wire:click="$set('thumbnail', null)" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
@@ -354,7 +359,7 @@ class extends Component {
                 @elseif ($existingThumbnailUrl && $existingThumbnailUrl !== asset('images/default-category.png'))
                     <div class="mt-2 p-2 bg-zinc-50 dark:bg-zinc-800 rounded-lg inline-block">
                         <span class="text-xs text-zinc-500 mb-2 block">Ảnh hiện tại:</span>
-                        <img src="{{ $existingThumbnailUrl }}" class="w-16 h-16 object-cover rounded-md border border-zinc-200 shadow-sm" alt="Current">
+                        <img src="{{ $existingThumbnailUrl }}" class="w-16 h-16 object-cover rounded-md border border-zinc-200 shadow-sm" alt="Current" loading="lazy">
                     </div>
                 @endif
             </div>
@@ -374,7 +379,7 @@ class extends Component {
     <flux:modal name="image-preview-modal" class="p-2 md:w-auto max-w-[90vw] md:max-w-200 bg-transparent border-none shadow-none">
         @if($previewImageUrl)
             <div class="relative flex justify-center group">
-                <img src="{{ $previewImageUrl }}" class="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" alt="Phóng to ảnh">
+                <img src="{{ $previewImageUrl }}" class="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" alt="Phóng to ảnh" loading="lazy">
 
                 <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <flux:modal.close>
