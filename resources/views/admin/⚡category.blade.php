@@ -45,7 +45,7 @@ class extends Component {
     #[Computed]
     public function categories()
     {
-        return $this->categoryService->getCategoriesList($this->search);
+        return $this->categoryService->getList($this->search);
     }
 
     #[Computed]
@@ -395,7 +395,7 @@ class extends Component {
             <div>
                 <flux:heading size="lg">Xác nhận xóa danh mục</flux:heading>
                 <flux:subheading>
-                    Ông giáo có chắc chắn muốn xóa danh mục này không? Hành động này không thể hoàn tác. Các ảnh đại
+                    Bạn có chắc chắn muốn xóa danh mục này không? Hành động này không thể hoàn tác. Các ảnh đại
                     diện (nếu có) cũng sẽ bị xóa vĩnh viễn khỏi hệ thống.
                 </flux:subheading>
             </div>

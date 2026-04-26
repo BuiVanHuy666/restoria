@@ -534,7 +534,7 @@ class extends Component {
     <flux:modal name="item-delete-modal" class="md:w-110">
         <div class="space-y-6">
             <flux:heading size="lg">Xác nhận xóa</flux:heading>
-            <p class="text-zinc-600">Hành động này sẽ xóa vĩnh viễn món ăn khỏi hệ thống. Ông giáo có chắc không?</p>
+            <p class="text-zinc-600">Hành động này sẽ xóa vĩnh viễn món ăn khỏi hệ thống. Bạn có chắc không?</p>
             <div class="flex justify-end gap-2">
                 <flux:modal.close>
                     <flux:button variant="ghost">Hủy</flux:button>

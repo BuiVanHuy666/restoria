@@ -67,17 +67,31 @@
                                     <i class="icon far fa-user-circle"></i> {{ auth()->user()->name }}
                                 </a>
                                 <div class="dropdown-menu auth-dropdown">
-                                    @foreach(config('menu.customer') as $item)
-                                        <a wire:navigate class="dropdown-item" href="{{ route($item['route']) }}">{{ $item['label'] }}</a>
-                                    @endforeach
+                                    @if(auth()->user()->role === 'admin')
+                                        <h6 class="dropdown-header text-primary">Quản trị hệ thống</h6>
+                                        @foreach(config('menu.admin') as $item)
+                                            <a class="dropdown-item" href="{{ route($item['route']) }}">
+                                                <i class="fas fa-{{ $item['icon'] }} mr-2"></i> {{ $item['label'] }}
+                                            </a>
+                                        @endforeach
+                                    @else
+                                        <h6 class="dropdown-header">Tài khoản khách hàng</h6>
+                                        @foreach(config('menu.customer') as $item)
+                                            <a wire:navigate class="dropdown-item" href="{{ route($item['route']) }}">
+                                                {{ $item['label'] }}
+                                            </a>
+                                        @endforeach
+                                    @endif
+
+
                                     <div class="dropdown-divider"></div>
-                                        <form action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" href="{{ route('logout') }}" class="logout-btn dropdown-item">
-                                                <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                                            </button>
-                                        </form>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="logout-btn dropdown-item">
+                                            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         @endauth

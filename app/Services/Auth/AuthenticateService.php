@@ -32,6 +32,22 @@ class AuthenticateService
         }
 
         if (Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+            $user = Auth::user();
+
+            if (!$user->is_active) {
+                Auth::logout();
+
+                Swal::error([
+                    'title' => 'Tài khoản bị khóa',
+                    'text' => 'Tài khoản của bạn hiện đang bị tạm khóa. Vui lòng liên hệ Hotline Admin để được hỗ trợ.',
+                    'confirmButtonText' => 'Tôi đã hiểu'
+                ]);
+                RateLimiter::hit($throttleKey);
+
+                throw ValidationException::withMessages([
+                    'email' => 'Tài khoản này hiện đang bị khóa.'
+                ]);
+            }
             $request->session()->regenerate();
 
             RateLimiter::clear($throttleKey);

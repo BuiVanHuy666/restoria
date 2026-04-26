@@ -14,7 +14,7 @@ class CategoryService
         protected ImageUploadService $imageService
     ) {}
 
-    public function getCategoriesList($search = ''): Collection
+    public function getList($search = ''): Collection
     {
         return Category::query()
                        ->when($search, function ($query, $search) {
@@ -111,9 +111,6 @@ class CategoryService
         return true;
     }
 
-    /**
-     * Dịch chuyển các danh mục xuống 1 bậc nếu bị trùng Order
-     */
     private function shiftSortOrderIfNeeded(int $targetOrder, ?int $excludeId = null): void
     {
         $conflict = Category::where('sort_order', $targetOrder)
