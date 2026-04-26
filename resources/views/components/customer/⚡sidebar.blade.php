@@ -2,14 +2,7 @@
 
 use Livewire\Component;
 
-new class extends Component {
-    public function mount(): void
-    {
-        $title = 'Xác nhận đăng xuất';
-        $text = "Quý khách có chắc chắn muốn rời khỏi hệ thống Restoria?";
-        confirmDelete($title, $text);
-    }
-};
+new class extends Component {};
 ?>
 
 <ul class="user-menu">
@@ -22,8 +15,12 @@ new class extends Component {
     @endforeach
     <hr>
     <li>
-        <a href="{{ route('logout') }}" class="logout-btn" data-confirm-delete="true">
-            <i class="fas fa-sign-out-alt"></i> Đăng xuất
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </button>
+        </form>
     </li>
 </ul>

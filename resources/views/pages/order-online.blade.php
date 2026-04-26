@@ -22,207 +22,69 @@
             </div>
 
             <div class="tabs-box menu-tabs">
+
                 <div class="buttons">
                     <ul class="tab-buttons clearfix">
-                        <li class="tab-btn active-btn" data-tab="#tab-1"><span>Khai vị</span></li>
-                        <li class="tab-btn" data-tab="#tab-2"><span>Món chính</span></li>
-                        <li class="tab-btn" data-tab="#tab-3"><span>Tráng miệng</span></li>
+                        @foreach($categories as $index => $category)
+                            <li class="tab-btn {{ $index === 0 ? 'active-btn' : '' }}" data-tab="#tab-category-{{ $category->id }}">
+                                <span>{{ $category->name }}</span>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
+
                 <div class="tabs-content">
-                    <div class="tab active-tab" id="tab-1">
-                        <div class="row clearfix">
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish1.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Greek Salad</a></h5>
-                                    <div class="text desc">flavorful, filled with panko bread crumbs, pine nuts, parsley, sun-dried tomatoes.</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
+                    @foreach($categories as $index => $category)
+                        <div class="tab {{ $index === 0 ? 'active-tab' : '' }}" id="tab-category-{{ $category->id }}">
+                            <div class="row clearfix">
 
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box special-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish1-special.png" alt="image"></a> <span class="special-tag">Popular</span> </div>
-                                    <h5><a href="menu-list-1.html">Tokusen Wagyu</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, pine nuts, parsley, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
-                            </div>
+                                @forelse($category->menuItems as $itemIndex => $item)
+                                    @php
+                                        $delay = ($itemIndex % 3) * 200;
 
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="400ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish2.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Butternut Pumpkin</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, tomato sauce,crab salad stuffed pepper.</div>
-                                    <div class="price">$15.00</div>
-                                </div>
-                            </div>
+                                        $isSpecialBox = !$item->is_round_image;
+                                    @endphp
 
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="600ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish3.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Opu Fish</a></h5>
-                                    <div class="text desc">Vegetables, cheeses, ground meats, tomato sauce, red onion, crab.</div>
-                                    <div class="price">$12.00</div>
-                                </div>
-                            </div>
+                                    <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="inner-box {{ $isSpecialBox ? 'special-box' : '' }} wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="{{ $delay }}ms">
 
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish4.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Greek Salad</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, crab salad red bell pepper...</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
+                                            <div class="image relative">
+                                                <a href="#">
+                                                    <img src="{{ $item->thumbnailUrl ?? asset('images/resource/default_food.jpg') }}"
+                                                         alt="{{ $item->name }}"
+                                                         class="object-cover h-64 w-full {{ $item->is_round_image ? 'rounded-full' : '' }}"
+                                                         loading="lazy"
+                                                    >
+                                                </a>
 
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dish5.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Tokusen Wagyu</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, red bell pepper, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
+                                                @if($item->is_popular)
+                                                    <span class="special-tag">Bán chạy</span>
+                                                @elseif($item->is_new)
+                                                    <span class="special-tag" style="background-color: #10b981;">Món mới</span>
+                                                @endif
+                                            </div>
+
+                                            <h5><a href="#">{{ $item->name }}</a></h5>
+                                            <div class="text desc">{{ $item->description ?? 'Đang cập nhật mô tả món ăn...' }}</div>
+                                            <div class="price">{{ number_format($item->price) }}đ</div>
+
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="col-12 text-center py-5">
+                                        <p class="italic text-gray-500">Chưa có món ăn nào trong danh mục này.</p>
+                                    </div>
+                                @endforelse
+
                             </div>
                         </div>
-                    </div>
-
-                    <div class="tab" id="tab-2">
-                        <div class="row clearfix">
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish1.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Roasted Salmon</a></h5>
-                                    <div class="text desc">flavorful, filled with panko bread crumbs, pine nuts, parsley, sun-dried tomatoes.</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box special-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish1-special.png" alt="image"></a> <span class="special-tag">Popular</span> </div>
-                                    <h5><a href="menu-list-1.html">Stuffed Mushrooms</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, pine nuts, parsley, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="400ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish2.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Steamed Crab Legs</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, tomato sauce,crab salad stuffed pepper.</div>
-                                    <div class="price">$15.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="600ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish3.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Roasted Salmon</a></h5>
-                                    <div class="text desc">Vegetables, cheeses, ground meats, tomato sauce, red onion, crab.</div>
-                                    <div class="price">$12.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish4.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Tokusen Wagyu</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, crab salad red bell pepper...</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/maindish5.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Olivas Rellenas</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, red bell pepper, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab" id="tab-3">
-                        <div class="row clearfix">
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish1.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Roasted Salmon</a></h5>
-                                    <div class="text desc">flavorful, filled with panko bread crumbs, pine nuts, parsley, sun-dried tomatoes.</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box special-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish1-special.png" alt="image"></a> <span class="special-tag">Popular</span> </div>
-                                    <h5><a href="menu-list-1.html">Stuffed Mushrooms</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, pine nuts, parsley, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="400ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish2.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Steamed Crab Legs</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, tomato sauce,crab salad stuffed pepper.</div>
-                                    <div class="price">$15.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="600ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish3.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Roasted Salmon</a></h5>
-                                    <div class="text desc">Vegetables, cheeses, ground meats, tomato sauce, red onion, crab.</div>
-                                    <div class="price">$12.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="0ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish4.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Tokusen Wagyu</a></h5>
-                                    <div class="text desc">Avocados with crab meat, red onion, crab salad red bell pepper...</div>
-                                    <div class="price">$39.00</div>
-                                </div>
-                            </div>
-
-                            <!--Item-->
-                            <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="inner-box wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="200ms">
-                                    <div class="image"><a href="#"><img src="images/resource/dessertdish5.png" alt="image"></a></div>
-                                    <h5><a href="menu-list-1.html">Olivas Rellenas</a></h5>
-                                    <div class="text desc">Tomatoes, green bell pepper, red bell pepper, sliced cucumber onion, olives.</div>
-                                    <div class="price">$45.00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
             <div class="open-timing">
-                <div class="hours">Phục vụ hàng ngày từ <span class="theme_color">7:00 tối</span> đến <span class="theme_color">9:00 tối</span></div>
+                <div class="hours">Phục vụ hàng ngày từ <span class="theme_color">7:00 tối</span> đến
+                    <span class="theme_color">9:00 tối</span></div>
                 <div class="link-box">
                     <a href="{{ route('client.menu') }}" class="theme-btn btn-style-two clearfix">
                         <span class="btn-wrap">

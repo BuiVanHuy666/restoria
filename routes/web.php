@@ -1,9 +1,23 @@
 <?php
 
+use App\Models\Category;
+use App\Models\MenuItem;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.home');
+    $popularItems = MenuItem::with('categories')
+                            ->where('is_popular', true)
+                            ->where('status', 'available')
+                            ->latest()
+                            ->get();
+
+    $categoriesWithItems = Category::with(['menuItems' => function($query) {
+        $query->where('is_popular', true)
+              ->where('status', 'available')
+              ->get();
+    }])->orderBy('sort_order')->get();
+
+    return view('pages.home', compact('popularItems', 'categoriesWithItems'));
 })->name('client.home');
 
 Route::get('/gioi-thieu-nha-hang', function () {
@@ -19,11 +33,19 @@ Route::get('/thu-vien-anh', function () {
 })->name('client.gallery');
 
 Route::get('/thuc-don-nha-hang', function () {
-    return view('pages.menu');
+    $categories = Category::with(['menuItems' => function($query) {
+        $query->available()->latest();
+    }])->orderBy('sort_order')->get();
+
+    return view('pages.menu', compact('categories'));
 })->name('client.menu');
 
 Route::get('/dat-mon-online', function () {
-    return view('pages.order-online');
+    $categories = Category::with(['menuItems' => function($query) {
+        $query->available()->latest();
+    }])->orderBy('sort_order')->get();
+
+    return view('pages.order-online', compact('categories'));
 })->name('client.order-online');
 
 Route::get('/dat-ban', function () {
@@ -32,3 +54,4 @@ Route::get('/dat-ban', function () {
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/customer.php';
+require __DIR__ . '/admin.php';

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
-use RealRashid\SweetAlert\Facades\Alert;
+use SweetAlert2\Laravel\Swal;
 
 class VerifyEmailController extends Controller
 {
@@ -43,7 +43,10 @@ class VerifyEmailController extends Controller
         RateLimiter::hit($throttleKey);
 
         if ($this->checkRateLimit($throttleKey)) {
-            Alert::error('Tạm khóa', 'Bạn đã thao tác quá nhanh vui lòng thử lại sao');
+            Swal::warning([
+                'title' => 'Tạm khóa',
+                'text' => 'Bạn đã thao tác quá nhanh vui lòng thử lại sao'
+            ]);
             return redirect()->back();
         }
 

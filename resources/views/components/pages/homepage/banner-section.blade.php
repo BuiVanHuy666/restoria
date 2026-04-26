@@ -60,7 +60,7 @@
                         <span class="label">ĐỊA CHỈ :</span> Số 123 Đường Lập Trình, Quận Công Nghệ, TP. Thông Tin
                     </div>
                     <div class="separator">
-                        <img src="{{ asset('images/icons/star-element.svg') }}" alt="separator">
+                        <img src="{{ asset('images/icons/star-element.svg') }}" alt="separator" loading="lazy">
                     </div>
                     <div class="info-item">
                         <span class="label">GIỜ MỞ CỬA :</span> Hàng ngày - 8:00 sáng đến 10:00 tối
@@ -73,7 +73,7 @@
 
     <a href="" class="book-btn">
         <span class="icon">
-            <img src="{{ asset('images/resource/book-icon-1.png') }}" alt="Đặt bàn" title="Đặt bàn ngay">
+            <img src="{{ asset('images/resource/book-icon-1.png') }}" alt="Đặt bàn" title="Đặt bàn ngay" loading="lazy">
         </span>
     </a>
 </section>

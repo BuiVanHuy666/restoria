@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
 
             $table->string('receiver_name');
-            $table->string('receiver_phone_numer', 15);
+            $table->string('receiver_phone_number', 15);
 
             $table->unsignedSmallInteger('province_code');
             $table->unsignedSmallInteger('ward_code');

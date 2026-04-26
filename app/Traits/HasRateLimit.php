@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\RateLimiter;
-use RealRashid\SweetAlert\Facades\Alert;
 
 trait HasRateLimit
 {

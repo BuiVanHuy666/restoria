@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Services\Auth\SocialUserService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Socialite;
-use phpDocumentor\Reflection\Types\Self_;
-use RealRashid\SweetAlert\Facades\Alert;
+use SweetAlert2\Laravel\Swal;
 
 class SocialAuthController extends Controller
 {
@@ -32,12 +28,19 @@ class SocialAuthController extends Controller
 
             $socialUserService->findOrCreateUser($provider, $socialUser);
 
-            Alert::success('Đăng nhập thành công!');
+            Swal::success([
+                'title' => 'Kết nối thành công',
+                'text' => 'Hệ thống đã nhận diện tài khoản của Quý khách.',
+                'confirmButtonText' => 'Tiếp tục'
+            ]);
             return redirect()->route('client.home');
         } catch (\Exception $e) {
             Log::driver('authentication')->error("Lỗi đăng nhập Socialite ({$provider}): ".$e->getMessage());
 
-            Alert::error('Lỗi', 'Quá trình đăng nhập bị gián đoạn. Vui lòng thử lại.');
+            Swal::error([
+                'title' => 'Kết nối gián đoạn',
+                'text' => 'Quá trình đăng nhập qua mạng xã hội gặp sự cố. Quý khách vui lòng kiểm tra lại kết nối.',
+            ]);
             return redirect()->route('login');
         }
     }

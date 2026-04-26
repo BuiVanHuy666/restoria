@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['receiver_name', 'receiver_phone_numer', 'province_code', 'ward_code', 'address_detail', 'is_default'])]
+#[Fillable(['receiver_name', 'receiver_phone_number', 'province_code', 'ward_code', 'address_detail', 'is_default'])]
 class UserAddress extends Model
 {
-    public function user(): HasOne
+    use HasFactory;
+
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

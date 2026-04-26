@@ -32,7 +32,8 @@ return [
     'component_namespaces' => [
         'layouts' => resource_path('views/components/layouts/dashboard'),
         'pages' => resource_path('views/pages'),
-        'customer' => resource_path('views/customer')
+        'customer' => resource_path('views/customer'),
+        'admin' => resource_path('views/admin')
     ],
 
     /*
