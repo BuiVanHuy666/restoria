@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->unsignedInteger('price');
+            $table->decimal('price', 12, 2);
             $table->string('image')->nullable();
             $table->string('status')->default(MenuItemStatus::AVAILABLE->value);
             $table
@@ -31,6 +31,7 @@ return new class extends Migration {
                 ->boolean('is_round_image')->default(false)
                 ->comment('Sử dụng layout ảnh tròn, không có viền bọc (1: Có, 0: Không)');;
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

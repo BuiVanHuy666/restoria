@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-
             $table->string('name', 100);
             $table->string('email')->unique();
             $table->string('provider')->nullable();
@@ -18,11 +17,11 @@ return new class extends Migration
             $table->string('phone_number', 15)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-
             $table->enum('role', ['admin', 'customer'])->default('customer');
-            $table->boolean('is_active')->nullable();
+            $table->boolean('is_active')->default(true);
 
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
 
