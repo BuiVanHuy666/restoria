@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->string('thumbnail')->nullable();
             $table->integer('sort_order')->default(0);
+            $table->boolean('allow_online_sale')->default(true);
             $table->timestamps();
         });
     }

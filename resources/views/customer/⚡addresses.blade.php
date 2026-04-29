@@ -42,16 +42,6 @@ class extends Component {
         $this->ward_code = null;
     }
 
-    public function getProvinceName($code): string
-    {
-        return app(LocationService::class)->getProvinceName((int)$code);
-    }
-
-    public function getWardName($provinceCode, $wardCode): string
-    {
-        return app(LocationService::class)->getWardName((int)$provinceCode, (int)$wardCode);
-    }
-
     protected function rules(): array
     {
         return [
@@ -157,10 +147,11 @@ class extends Component {
                     @endif
                     <div class="address-name">{{ $address->receiver_name }}</div>
                     <span class="address-phone">{{ $address->receiver_phone_number }}</span>
+
                     <div class="address-detail">
-                        {{ $address->address_detail }}
-                        {{ $this->getWardName($address->province_code, $address->ward_code) }}
-                        {{ $this->getProvinceName($address->province_code) }}
+                        {{ $address->address_detail }},
+                        {{ $address->ward_name }},
+                        {{ $address->province_name }}
                     </div>
                     <div class="address-actions mt-3">
                         <button wire:click="edit({{ $address->id }})" data-toggle="restoria-modal" data-target="#addressModal" class="btn btn-sm text-white bg-transparent border-0 px-0 mr-3">
@@ -297,4 +288,3 @@ class extends Component {
     });
 </script>
 @endscript
-

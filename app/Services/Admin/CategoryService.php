@@ -87,6 +87,7 @@ class CategoryService
             'slug' => Str::slug($data['name']),
             'sort_order' => $sortOrder,
             'thumbnail' => $thumbnailPath,
+            'allow_online_sale' => $data['allow_online_sale']
         ]);
 
         return $category;

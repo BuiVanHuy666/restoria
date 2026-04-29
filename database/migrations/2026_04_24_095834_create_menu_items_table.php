@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->unsignedInteger('price');
+            $table->decimal('price', 12, 2);
             $table->string('image')->nullable();
             $table->string('status')->default(MenuItemStatus::AVAILABLE->value);
             $table
@@ -29,8 +29,11 @@ return new class extends Migration {
                 ->comment('Đánh dấu món ăn bán chạy/nổi bật (1: Có, 0: Không)');
             $table
                 ->boolean('is_round_image')->default(false)
-                ->comment('Sử dụng layout ảnh tròn, không có viền bọc (1: Có, 0: Không)');;
+                ->comment('Sử dụng layout ảnh tròn, không có viền bọc (1: Có, 0: Không)');
+            $table->boolean('allow_online_sale')->default(true)
+                ->comment('Cho phép bán qua mạng (1: Có, 0: Chỉ bán tại quán)');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -11,11 +11,14 @@ Route::get('/', function () {
                             ->latest()
                             ->get();
 
-    $categoriesWithItems = Category::with(['menuItems' => function($query) {
-        $query->where('is_popular', true)
-              ->where('status', 'available')
-              ->get();
-    }])->orderBy('sort_order')->get();
+    $categoriesWithItems = Category::with([
+        'menuItems' => function ($query) {
+            $query
+                ->where('is_popular', true)
+                ->where('status', 'available')
+                ->get();
+        }
+    ])->orderBy('sort_order')->get();
 
     return view('pages.home', compact('popularItems', 'categoriesWithItems'));
 })->name('client.home');
@@ -33,17 +36,30 @@ Route::get('/thu-vien-anh', function () {
 })->name('client.gallery');
 
 Route::get('/thuc-don-nha-hang', function () {
-    $categories = Category::with(['menuItems' => function($query) {
-        $query->available()->latest();
-    }])->orderBy('sort_order')->get();
+    $categories = Category::with([
+        'menuItems' => function ($query) {
+            $query
+                ->available()
+                ->orderBy('is_popular', 'desc')
+                ->orderBy('is_new', 'desc')
+                ->latest();
+        }
+    ])->orderBy('sort_order')->get();
 
     return view('pages.menu', compact('categories'));
 })->name('client.menu');
 
 Route::get('/dat-mon-online', function () {
-    $categories = Category::with(['menuItems' => function($query) {
-        $query->available()->latest();
-    }])->orderBy('sort_order')->get();
+    $categories = Category::onlineSale()->with([
+        'menuItems' => function ($query) {
+            $query
+                ->onlineSale()
+                ->with('categories')
+                ->orderBy('is_popular', 'desc')
+                ->orderBy('is_new', 'desc')
+                ->latest();
+        }
+    ])->orderBy('sort_order')->get();
 
     return view('pages.order-online', compact('categories'));
 })->name('client.order-online');
@@ -52,6 +68,8 @@ Route::get('/dat-ban', function () {
     return view('pages.book-table');
 })->name('client.book-table');
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/customer.php';
-require __DIR__ . '/admin.php';
+Route::get('/payment/callback', [\App\Http\Controllers\PaymentController::class, 'vnpayReturn'])->name('payment.vnpay_return');
+
+require __DIR__.'/auth.php';
+require __DIR__.'/customer.php';
+require __DIR__.'/admin.php';

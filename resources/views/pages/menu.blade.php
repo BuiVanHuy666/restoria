@@ -1,15 +1,11 @@
 <x-layouts.app title="Thực đơn nhà hàng">
-    <section class="inner-banner">
-        <div class="image-layer" style="background-image: url('{{ asset('images/background/banner-image-2.jpg') }}');"></div>
-        <div class="auto-container">
-            <div class="inner">
-                <h1>Thực Đơn Nhà Hàng</h1>
-                <div class="sub_text">
-                    <p> Hương vị hoàn hảo trong từng món ăn - <span class="primary-color"> ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-partials.inner-banner
+        title="Thực Đơn Nhà Hàng"
+        :image="asset('images/background/banner-image-2.jpg')"
+    >
+        <p>Hương vị hoàn hảo trong từng món ăn -
+            <span class="primary-color"> ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
+    </x-partials.inner-banner>
 
     @foreach($categories as $category)
         <section class="menu-one {{ $loop->odd ? 'alternate section-kt' : '' }}">

@@ -24,6 +24,7 @@ class extends Component {
 
     public string $name = '';
     public int $sort_order;
+    public bool $allow_online_sale = true;
     public $thumbnail;
 
     public bool $isEditMode = false;
@@ -74,11 +75,24 @@ class extends Component {
         Flux::modal('category-delete-modal')->show();
     }
 
+    public function toggleOnlineSale($id): void
+    {
+        $category = Category::findOrFail($id);
+        $category->update(['allow_online_sale' => !$category->allow_online_sale]);
+
+        if ($this->selectedCategoryId === $id) {
+            unset($this->selectedCategory);
+        }
+
+        Flux::toast('Đã cập nhật trạng thái bán online.', variant: 'success');
+    }
+
     public function create(): void
     {
         $this->resetValidation();
-        $this->reset(['editId', 'name', 'sort_order', 'thumbnail', 'existingThumbnailUrl', 'isEditMode']);
+        $this->reset(['editId', 'name', 'sort_order', 'thumbnail', 'existingThumbnailUrl', 'isEditMode', 'allow_online_sale']);
         $this->isEditMode = false;
+        $this->allow_online_sale = true;
         $this->sort_order = (Category::max('sort_order') ?? -1) + 1;
 
         Flux::modal('category-form-modal')->show();
@@ -92,6 +106,7 @@ class extends Component {
         $this->editId = $category->id;
         $this->name = $category->name;
         $this->sort_order = $category->sort_order;
+        $this->allow_online_sale = (bool)$category->allow_online_sale;
         $this->existingThumbnailUrl = $category->thumbnail_url;
         $this->thumbnail = null;
         $this->isEditMode = true;
@@ -104,6 +119,7 @@ class extends Component {
         $this->validate([
             'name' => 'required|string|max:255|unique:categories,name,'.$this->editId,
             'sort_order' => 'required|integer|min:0',
+            'allow_online_sale' => 'boolean',
             'thumbnail' => 'nullable|image|max:2048',
         ], [
             'name.required' => 'Vui lòng nhập tên danh mục.',
@@ -112,15 +128,14 @@ class extends Component {
         ]);
 
         try {
+            $data = [
+                'name' => $this->name,
+                'sort_order' => $this->sort_order,
+                'allow_online_sale' => $this->allow_online_sale,
+            ];
+
             if ($this->isEditMode) {
-                $this->categoryService->update(
-                    id: $this->editId,
-                    data: [
-                        'name' => $this->name,
-                        'sort_order' => $this->sort_order,
-                    ],
-                    thumbnailFile: $this->thumbnail
-                );
+                $this->categoryService->update($this->editId, $data, $this->thumbnail);
 
                 Flux::toast(
                     text: 'Thông tin danh mục đã được cập nhật.',
@@ -128,13 +143,7 @@ class extends Component {
                     variant: 'success',
                 );
             } else {
-                $this->categoryService->store(
-                    data: [
-                        'name' => $this->name,
-                        'sort_order' => $this->sort_order,
-                    ],
-                    thumbnailFile: $this->thumbnail
-                );
+                $this->categoryService->store($data, $this->thumbnail);
 
                 Flux::toast(
                     text: 'Danh mục mới đã được thêm vào thực đơn.',
@@ -143,7 +152,7 @@ class extends Component {
                 );
             }
 
-            $this->reset(['editId', 'name', 'sort_order', 'thumbnail', 'existingThumbnailUrl', 'isEditMode']);
+            $this->reset(['editId', 'name', 'sort_order', 'allow_online_sale', 'thumbnail', 'existingThumbnailUrl', 'isEditMode']);
             Flux::modal('category-form-modal')->close();
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::driver('crud')->error('Lỗi khi tạo danh mục: '.$e->getMessage());
@@ -182,7 +191,7 @@ class extends Component {
             }
         }
     }
-}
+};
 ?>
 
 <div class="space-y-6">
@@ -202,6 +211,7 @@ class extends Component {
                 <flux:table.column>Thứ tự</flux:table.column>
                 <flux:table.column>Tên danh mục</flux:table.column>
                 <flux:table.column>Đường dẫn</flux:table.column>
+                <flux:table.column>Bán Online</flux:table.column>
                 <flux:table.column>Số món</flux:table.column>
                 <flux:table.column></flux:table.column>
             </flux:table.columns>
@@ -223,20 +233,25 @@ class extends Component {
                             </div>
                         </flux:table.cell>
                         <flux:table.cell class="text-zinc-500 italic text-sm">/{{ $category->slug }}</flux:table.cell>
+
+                        <flux:table.cell>
+                            <flux:badge :color="$category->allow_online_sale ? 'emerald' : 'rose'" size="sm">
+                                {{ $category->allow_online_sale ? 'Bán online' : 'Chỉ bán tại chổ' }}
+                            </flux:badge>
+                        </flux:table.cell>
+
                         <flux:table.cell>{{ $category->menuItems->count() }} món</flux:table.cell>
                         <flux:table.cell>
                             <flux:dropdown>
                                 <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal"/>
                                 <flux:menu>
-                                    <flux:menu.item icon="eye" wire:click="showDetail({{ $category->id }})">Xem chi
-                                        tiết
-                                    </flux:menu.item>
-                                    <flux:menu.item icon="pencil" wire:click="edit({{ $category->id }})">Chỉnh sửa
+                                    <flux:menu.item icon="eye" wire:click="showDetail({{ $category->id }})">Xem chi tiết</flux:menu.item>
+                                    <flux:menu.item icon="pencil" wire:click="edit({{ $category->id }})">Chỉnh sửa</flux:menu.item>
+                                    <flux:menu.item icon="{{ $category->allow_online_sale ? 'eye-slash' : 'eye' }}" wire:click="toggleOnlineSale({{ $category->id }})">
+                                        {{ $category->allow_online_sale ? 'Chỉ bản tại chỗ' : 'Cho phép bán online' }}
                                     </flux:menu.item>
                                     <flux:menu.separator/>
-                                    <flux:menu.item icon="trash" variant="danger" wire:click="confirmDelete({{ $category->id }})">
-                                        Xóa
-                                    </flux:menu.item>
+                                    <flux:menu.item icon="trash" variant="danger" wire:click="confirmDelete({{ $category->id }})">Xóa</flux:menu.item>
                                 </flux:menu>
                             </flux:dropdown>
                         </flux:table.cell>
@@ -249,7 +264,7 @@ class extends Component {
 
     <flux:modal name="category-detail-modal" class="md:w-175">
         @if($this->selectedCategory)
-            <div class="space-y-6">
+            <div class="space-y-6" wire:key="{{ $this->selectedCategory->id }}">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-4">
                         <img src="{{ $this->selectedCategory->thumbnail_url }}"
@@ -263,51 +278,67 @@ class extends Component {
                                 <span class="font-mono">/{{ $this->selectedCategory->slug }}</span></flux:subheading>
                         </div>
                     </div>
-                    <flux:badge color="zinc">Thứ tự: {{ $this->selectedCategory->sort_order }}</flux:badge>
+                    <div class="flex flex-col items-end gap-2">
+                        <flux:badge color="zinc">Thứ tự: {{ $this->selectedCategory->sort_order }}</flux:badge>
+                        <flux:badge :color="$this->selectedCategory->allow_online_sale ? 'emerald' : 'rose'" size="sm">
+                            {{ $this->selectedCategory->allow_online_sale ? 'Bán online' : 'Chỉ bán tại chổ' }}
+                        </flux:badge>
+                    </div>
                 </div>
 
                 <flux:separator/>
 
-                <div>
-                    <flux:heading size="sm" class="mb-4">Danh sách món ăn
-                        ({{ $this->selectedCategory->menuItems->count() }})
-                    </flux:heading>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2">
+                        <flux:heading size="sm" class="mb-4">Danh sách món ăn ({{ $this->selectedCategory->menuItems->count() }})</flux:heading>
 
-                    <div class="max-h-75 overflow-y-auto pr-2 custom-scrollbar">
-                        <flux:table>
-                            <flux:table.rows>
-                                @forelse($this->selectedCategory->menuItems as $item)
-                                    <flux:table.row>
-                                        <flux:table.cell>
-                                            <div class="flex items-center gap-3">
-                                                <img wire:click.stop="previewImage('{{ $item->thumbnail_url }}')"
-                                                     src="{{ $item->thumbnail_url ?? asset('images/default-food.jpg') }}"
-                                                     class="w-8 h-8 rounded object-cover"
-                                                     loading="lazy">
-                                                <span class="text-sm font-medium">{{ $item->name }}</span>
-                                            </div>
-                                        </flux:table.cell>
-                                        <flux:table.cell class="text-sm">{{ number_format($item->price) }}đ
-                                        </flux:table.cell>
-                                        <flux:table.cell>
-                                            <flux:badge size="sm" color="{{ $item->status->color() }}">
-                                                {{ $item->status->label() }}
-                                            </flux:badge>
-                                        </flux:table.cell>
-                                    </flux:table.row>
-                                @empty
-                                    <flux:table.row>
-                                        <flux:table.cell colspan="3" class="text-center py-4 text-zinc-500 text-sm italic">
-                                            Chưa có món ăn nào trong danh mục này.
-                                        </flux:table.cell>
-                                    </flux:table.row>
-                                @endforelse
-                            </flux:table.rows>
-                        </flux:table>
+                        <div class="max-h-75 overflow-y-auto pr-2 custom-scrollbar">
+                            <flux:table>
+                                <flux:table.rows>
+                                    @forelse($this->selectedCategory->menuItems as $item)
+                                        <flux:table.row>
+                                            <flux:table.cell>
+                                                <div class="flex items-center gap-3">
+                                                    <img wire:click.stop="previewImage('{{ $item->thumbnail_url }}')"
+                                                         src="{{ $item->thumbnail_url ?? asset('images/default-food.jpg') }}"
+                                                         class="w-8 h-8 rounded object-cover"
+                                                         loading="lazy">
+                                                    <span class="text-sm font-medium">{{ $item->name }}</span>
+                                                </div>
+                                            </flux:table.cell>
+                                            <flux:table.cell class="text-sm">{{ number_format($item->price) }}đ
+                                            </flux:table.cell>
+                                            <flux:table.cell>
+                                                <flux:badge size="sm" color="{{ $item->status->color() }}">
+                                                    {{ $item->status->label() }}
+                                                </flux:badge>
+                                            </flux:table.cell>
+                                        </flux:table.row>
+                                    @empty
+                                        <flux:table.row>
+                                            <flux:table.cell colspan="3" class="text-center py-4 text-zinc-500 text-sm italic">
+                                                Chưa có món ăn nào trong danh mục này.
+                                            </flux:table.cell>
+                                        </flux:table.row>
+                                    @endforelse
+                                </flux:table.rows>
+                            </flux:table>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <div class="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50/50 dark:bg-zinc-800/30">
+                            <div class="text-xs text-zinc-500 uppercase font-bold mb-3">Thao tác nhanh</div>
+                            <flux:switch
+                                wire:click="toggleOnlineSale({{ $this->selectedCategory->id }})"
+                                :checked="$this->selectedCategory->allow_online_sale"
+                                label="Bán online"
+                                description="Bật để hiển thị danh mục này trên trang đặt món online."/>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex justify-end gap-2 pt-4">
+                <div class="flex justify-end gap-2 pt-4 border-t border-zinc-200 dark:border-zinc-700">
                     <flux:modal.close>
                         <flux:button variant="ghost">Đóng</flux:button>
                     </flux:modal.close>
@@ -339,6 +370,10 @@ class extends Component {
                 <flux:input wire:model="sort_order" type="number" label="Thứ tự hiển thị" placeholder="VD: 0" min="0" required/>
             </div>
 
+            <div class="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50/30">
+                <flux:switch wire:model="allow_online_sale" label="Cho phép bán Online" description="Bật để hiển thị toàn bộ danh mục này trên trang web đặt món."/>
+            </div>
+
             <div class="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg space-y-4">
                 <div>
                     <flux:heading size="sm">Hình ảnh đại diện (Thumbnail)</flux:heading>
@@ -364,7 +399,7 @@ class extends Component {
                 @endif
             </div>
 
-            <div class="flex justify-end gap-2 pt-4">
+            <div class="flex justify-end gap-2 pt-4 border-t border-zinc-200 dark:border-zinc-700">
                 <flux:modal.close>
                     <flux:button variant="ghost">Hủy</flux:button>
                 </flux:modal.close>

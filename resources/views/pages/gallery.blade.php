@@ -1,15 +1,10 @@
 <x-layouts.app title="Thư viện ảnh">
-    <section class="inner-banner">
-        <div class="image-layer" style="background-image: url('{{ asset('images/background/banner-image-4.jpg') }}');"></div>
-        <div class="auto-container">
-            <div class="inner">
-                <h1>Thư Viện Ảnh</h1>
-                <div class="sub_text">
-                    <p>Hương vị hoàn hảo trong từng món ăn - <span class="primary-color">ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-partials.inner-banner
+        title="Thư viện ảnh"
+        :image="asset('images/background/banner-image-4.jpg')"
+    >
+        <p>Hương vị hoàn hảo trong từng món ăn - <span class="primary-color">ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
+    </x-partials.inner-banner>
 
     <section class="gallery-page section-kt">
         <div class="auto-container">

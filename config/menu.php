@@ -69,6 +69,11 @@ return [
             'route' => 'admin.menu'
         ],
         [
+            'label' => 'Khuyến mãi',
+            'icon' => 'percent-badge',
+            'route' => 'admin.promotion'
+        ],
+        [
             'label' => 'Khách hàng',
             'icon' => 'users',
             'route' => 'admin.customer'
