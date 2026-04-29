@@ -16,7 +16,6 @@
     <flux:sidebar.toggle class="lg:hidden" icon="x-mark"/>
 
     <flux:brand href="" logo="{{ asset('images/logo.png') }}" class="px-2"/>
-    <flux:brand href="" logo="{{ asset('images/logo-admin-dark.svg') }}" name="Restoria Admin" class="px-2 hidden dark:flex"/>
 
     <flux:navlist variant="outline">
         @foreach(config('menu.admin') as $item)
@@ -33,7 +32,13 @@
 
     <flux:navlist variant="outline">
         <flux:navlist.item icon="cog-6-tooth" href="#">Tài khoản của tôi</flux:navlist.item>
-        <flux:navlist.item icon="arrow-right-start-on-rectangle" href="#">Đăng xuất</flux:navlist.item>
+        <form method="POST" action="{{ route('logout') }}" class="w-full">
+            @csrf
+            @method('DELETE')
+            <flux:navlist.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full text-left">
+                Đăng xuất
+            </flux:navlist.item>
+        </form>
     </flux:navlist>
     <div class="px-2 mb-4">
         <flux:button variant="subtle" square class="w-full justify-start" x-on:click="$flux.dark = ! $flux.dark">
@@ -59,7 +64,13 @@
         <flux:profile avatar="https://ui-avatars.com/api/?name=Admin"/>
         <flux:menu>
             <flux:menu.item icon="cog-6-tooth">Tài khoản</flux:menu.item>
-            <flux:menu.item icon="arrow-right-start-on-rectangle">Đăng xuất</flux:menu.item>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                @method('DELETE')
+                <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle">
+                    Đăng xuất
+                </flux:menu.item>
+            </form>
         </flux:menu>
     </flux:dropdown>
 </flux:header>

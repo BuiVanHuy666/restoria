@@ -34,8 +34,9 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('payment_status')->default('unpaid');
             $table->timestamp('paid_at')->nullable();
+            $table->json('payment_detail')->nullable();
 
-            $table->text('note')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

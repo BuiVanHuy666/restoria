@@ -39,37 +39,7 @@
                             <div class="row clearfix">
 
                                 @forelse($category->menuItems as $itemIndex => $item)
-                                    @php
-                                        $delay = ($itemIndex % 3) * 200;
-
-                                        $isSpecialBox = !$item->is_round_image;
-                                    @endphp
-
-                                    <div class="offer-block-three col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="inner-box {{ $isSpecialBox ? 'special-box' : '' }} wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="{{ $delay }}ms">
-
-                                            <div class="image relative">
-                                                <a href="#">
-                                                    <img src="{{ $item->thumbnailUrl ?? asset('images/resource/default_food.jpg') }}"
-                                                         alt="{{ $item->name }}"
-                                                         class="object-cover h-64 w-full {{ $item->is_round_image ? 'rounded-full' : '' }}"
-                                                         loading="lazy"
-                                                    >
-                                                </a>
-
-                                                @if($item->is_popular)
-                                                    <span class="special-tag">Bán chạy</span>
-                                                @elseif($item->is_new)
-                                                    <span class="special-tag" style="background-color: #10b981;">Món mới</span>
-                                                @endif
-                                            </div>
-
-                                            <h5><a href="#">{{ $item->name }}</a></h5>
-                                            <div class="text desc">{{ $item->description ?? 'Đang cập nhật mô tả món ăn...' }}</div>
-                                            <div class="price">{{ number_format($item->price) }}đ</div>
-
-                                        </div>
-                                    </div>
+                                    <x-partials.menu-item-card :item="$item" :index="$itemIndex" />
                                 @empty
                                     <div class="col-12 text-center py-5">
                                         <p class="italic text-gray-500">Chưa có món ăn nào trong danh mục này.</p>

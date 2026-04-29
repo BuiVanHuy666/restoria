@@ -13,4 +13,6 @@ Route::prefix('quan-tri')
            ->name('admin.customer');
        Route::livewire('quan-ly-doanh-muc', 'admin::category')
            ->name('admin.category');
+       Route::livewire('khuyen-mai', 'admin::promotion')
+           ->name('admin.promotion');
     });

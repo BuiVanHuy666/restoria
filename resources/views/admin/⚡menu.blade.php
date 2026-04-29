@@ -38,6 +38,7 @@ class extends Component {
     public bool $is_new = false;
     public bool $is_popular = false;
     public bool $is_round_image = false;
+    public bool $allow_online_sale = true;
 
     public bool $isEditMode = false;
     public ?int $editId = null;
@@ -66,6 +67,7 @@ class extends Component {
             'is_new' => 'boolean',
             'is_popular' => 'boolean',
             'is_round_image' => 'boolean',
+            'allow_online_sale' => 'boolean',
         ];
     }
 
@@ -167,7 +169,8 @@ class extends Component {
                 'isEditMode',
                 'is_new',
                 'is_popular',
-                'is_round_image'
+                'is_round_image',
+                'allow_online_sale'
             ]
         );
         $this->item_status = 'available';
@@ -191,6 +194,7 @@ class extends Component {
         $this->is_new = (bool)$item->is_new;
         $this->is_popular = (bool)$item->is_popular;
         $this->is_round_image = (bool)$item->is_round_image;
+        $this->allow_online_sale = (bool)$item->allow_online_sale;
 
         $this->image = null;
         $this->isEditMode = true;
@@ -212,7 +216,8 @@ class extends Component {
                 'status' => $this->item_status,
                 'is_new' => $this->is_new,
                 'is_popular' => $this->is_popular,
-                'is_round_image' => $this->is_round_image
+                'is_round_image' => $this->is_round_image,
+                'allow_online_sale'
             ];
 
             if ($this->isEditMode) {
@@ -237,7 +242,8 @@ class extends Component {
                     'isEditMode',
                     'is_new',
                     'is_popular',
-                    'is_round_image'
+                    'is_round_image',
+                    'allow_online_sale'
                 ]
             );
             Flux::modal('menu-item-form-modal')->close();
@@ -321,6 +327,9 @@ class extends Component {
                                         @endif
                                         @if($item->is_popular)
                                             <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-700">HOT</span>
+                                        @endif
+                                        @if(!$item->allow_online_sale)
+                                            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-700">CHỈ TẠI QUÁN</span>
                                         @endif
                                     </div>
                                 </div>
@@ -410,6 +419,7 @@ class extends Component {
                 <flux:switch wire:model="is_new" label="Món mới" description="Nhãn xanh"/>
                 <flux:switch wire:model="is_popular" label="Bán chạy" description="Nhãn cam"/>
                 <flux:switch wire:model="is_round_image" label="Dùng đĩa tròn" description="Layout lơ lửng"/>
+                <flux:switch wire:model="is" label="Bán Online" description="Tắt nếu chỉ bán tại quán"/>
             </div>
 
             <flux:textarea wire:model="description" label="Mô tả chi tiết" rows="3"/>
@@ -514,6 +524,12 @@ class extends Component {
                                     :checked="$this->selectedItem->is_round_image"
                                     label="Dùng đĩa tròn"
                                     description="Bật layout đĩa tròn lơ lửng" />
+
+                                <flux:switch
+                                    wire:click="toggleQuickFlag({{ $this->selectedItem->id }}, 'allow_online_sale')"
+                                    :checked="$this->selectedItem->allow_online_sale"
+                                    label="Bán Online"
+                                    description="Cho phép khách đặt giao hàng" />
                             </div>
                         </div>
 

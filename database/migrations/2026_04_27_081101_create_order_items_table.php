@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('discount_amount', 12)->default(0)->comment('Số tiền được giảm');
             $table->integer('quantity');
             $table->decimal('item_price', 12)->comment('Giá thực tế thanh toán');
+            $table->string('note')->nullable();
 
             $table->foreignIdFor(Promotion::class)->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

@@ -1,15 +1,13 @@
 <x-layouts.app title="Liên hệ">
-    <section class="inner-banner">
-        <div class="image-layer" style="background-image: url({{ asset('images/background/banner-image-4.jpg') }});"></div>
-        <div class="auto-container">
-            <div class="inner">
-                <h1>Liên Hệ</h1>
-                <div class="sub_text">
-                    <p> Hương vị hoàn hảo trong từng món ăn - <span class="primary-color"> ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-layouts.app title="Liên hệ">
+        <x-partials.inner-banner
+            title="Liên Hệ"
+            :image="asset('images/background/banner-image-4.jpg')"
+        >
+            <p>Hương vị hoàn hảo trong từng món ăn - <span class="primary-color"> ẩm thực cao cấp mang hơi thở hiện đại.</span></p>
+        </x-partials.inner-banner>
+
+    </x-layouts.app>
     <section class="contact-page section-kt">
 
         <div class="auto-container">

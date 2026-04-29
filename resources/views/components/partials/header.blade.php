@@ -62,6 +62,14 @@
                         @endguest
 
                         @auth
+                            @if(auth()->user()->role === 'customer')
+                                <div class="link cart-box mr-3">
+                                    <a href="{{ route('customer.cart') }}" class="cart-btn" style="position: relative; display: inline-block;">
+                                        <i class="fas fa-shopping-basket" style="font-size: 22px;"></i>
+                                        <livewire:customer.header-cart-count/>
+                                    </a>
+                                </div>
+                            @endif
                             <div class="link dropdown">
                                 <a href="#" class="login-link dropdown-toggle" data-toggle="dropdown">
                                     <i class="icon far fa-user-circle"></i> {{ auth()->user()->name }}
