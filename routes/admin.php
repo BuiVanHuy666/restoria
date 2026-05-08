@@ -15,4 +15,6 @@ Route::prefix('quan-tri')
            ->name('admin.category');
        Route::livewire('khuyen-mai', 'admin::promotion')
            ->name('admin.promotion');
+       Route::livewire('thu-vien', 'admin::gallery')
+           ->name('admin.gallery');
     });

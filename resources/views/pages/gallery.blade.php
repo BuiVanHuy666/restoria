@@ -1,4 +1,8 @@
 <x-layouts.app title="Thư viện ảnh">
+    @php
+        $allGalleries = \App\Models\Gallery::where('is_active', true)->latest()->get();
+    @endphp
+
     <x-partials.inner-banner
         title="Thư viện ảnh"
         :image="asset('images/background/banner-image-4.jpg')"
@@ -12,115 +16,34 @@
                 <div class="menu-tabs">
                     <div class="buttons">
                         <ul class="tab-buttons clearfix">
-                            <li class="tab-btn active-btn" data-tab="#gallery-space">Không gian nhà hàng</li>
-                            <li class="tab-btn" data-tab="#gallery-food">Thức ăn & Thức uống</li>
-                            <li class="tab-btn" data-tab="#gallery-guests">Thực khách</li>
+                            @foreach(\App\Models\Gallery::GALLERY_TYPES as $key => $label)
+                                <li class="tab-btn {{ $loop->first ? 'active-btn' : '' }}" data-tab="#gallery-{{ $key }}">
+                                    {{ $label }}
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
 
                 <div class="tabs-content">
-                    <div class="tab active-tab" id="gallery-space">
-                        <div class="masonry">
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic1.jpg') }}" class="fancybox" data-fancybox="space">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Không gian">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic2.jpg') }}" class="fancybox" data-fancybox="space">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Không gian">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic3.jpg') }}" class="fancybox" data-fancybox="space">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Không gian">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic4.jpg') }}" class="fancybox" data-fancybox="space">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Không gian">
-                                </a>
+                    @foreach(\App\Models\Gallery::GALLERY_TYPES as $key => $label)
+                        <div class="tab {{ $loop->first ? 'active-tab' : '' }}" id="gallery-{{ $key }}">
+                            <div class="masonry">
+                                @forelse($allGalleries->where('category', $key) as $item)
+                                    <div class="masonry-item">
+                                        <a href="{{ asset('storage/' . $item->image_path) }}"
+                                           class="fancybox"
+                                           data-fancybox="{{ $key }}"
+                                           data-caption="{{ $item->title }}">
+                                            <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->title }}">
+                                        </a>
+                                    </div>
+                                @empty
+                                    <div class="text-center py-10 text-zinc-400">Đang cập nhật hình ảnh...</div>
+                                @endforelse
                             </div>
                         </div>
-                    </div>
-
-                    <div class="tab" id="gallery-food">
-                        <div class="masonry">
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic2.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic5.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div><div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic4.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div><div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic1.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div><div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic10.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab" id="gallery-guests">
-                        <div class="masonry">
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic3.jpg') }}" class="fancybox" data-fancybox="guests">
-                                    <img src="{{ asset('images/gallery/pic3-thumb.jpg') }}" alt="Thực khách">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic2.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic1.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic4.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic1-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic5.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic5-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic6.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic7.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic8.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                            <div class="masonry-item">
-                                <a href="{{ asset('images/gallery/pic9.jpg') }}" class="fancybox" data-fancybox="food">
-                                    <img src="{{ asset('images/gallery/pic2-thumb.jpg') }}" alt="Thức ăn">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

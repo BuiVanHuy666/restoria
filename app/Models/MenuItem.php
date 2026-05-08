@@ -31,6 +31,30 @@ class MenuItem extends Model
         return $this->belongsToMany(Category::class, 'category_menu_item');
     }
 
+    public function activePromotion(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return Promotion::active()
+                                ->where(function ($query) {
+                                    $query->where('apply_to', 'all')
+                                          ->orWhere(function ($q) {
+                                            $q->where('apply_to', 'items')
+                                              ->whereHas('menuItems', fn($sub) => $sub->where('menu_items.id', $this->id));
+                                        })
+
+                                          ->orWhere(function ($q) {
+                                            $q->where('apply_to', 'categories')
+                                              ->whereHas('categories', fn($sub) => $sub->whereIn('categories.id', $this->categories->pluck('id')));
+                                        });
+
+                                })
+                                ->orderByDesc('discount_value')
+                                ->first();
+            }
+        );
+    }
+
     public function discountedPrice(): Attribute
     {
         return Attribute::make(
@@ -97,6 +121,4 @@ class MenuItem extends Model
         $query->where('allow_online_sale', true)
               ->whereHas('categories', fn($q) => $q->where('allow_online_sale', true));
     }
-
-
 }

@@ -24,7 +24,6 @@ class extends Component {
     public string $search = '';
     public string $status = '';
 
-    // Form fields
     public string $name = '';
     public string $description = '';
     public string $discount_type = 'percentage';
@@ -35,7 +34,6 @@ class extends Component {
     public $ends_at;
     public bool $is_active = true;
 
-    // Selection for categories/items
     public array $selected_categories = [];
     public array $selected_items = [];
 
@@ -94,27 +92,26 @@ class extends Component {
     public function create(): void
     {
         $this->resetValidation();
-        $this->reset(
-            [
-                'editId',
-                'name',
-                'description',
-                'discount_value',
-                'max_discount_amount',
-                'starts_at',
-                'ends_at',
-                'selected_categories',
-                'selected_items',
-                'isEditMode'
-            ]
-        );
+        $this->reset([
+            'editId',
+            'name',
+            'description',
+            'discount_value',
+            'max_discount_amount',
+            'selected_categories',
+            'selected_items',
+            'isEditMode'
+        ]);
+
         $this->discount_type = 'percentage';
         $this->apply_to = 'all';
         $this->is_active = true;
 
+        $this->starts_at = now()->format('Y-m-d\TH:i');
+        $this->ends_at = now()->addDays(7)->format('Y-m-d\TH:i');
+
         Flux::modal('promotion-form-modal')->show();
     }
-
     public function edit($id): void
     {
         $this->resetValidation();
@@ -149,10 +146,16 @@ class extends Component {
                     'description' => $this->description,
                     'discount_type' => $this->discount_type,
                     'discount_value' => $this->discount_value,
-                    'max_discount_amount' => $this->max_discount_amount,
+
+                    // Xử lý an toàn: nếu để trống thì gán null thay vì chuỗi rỗng ''
+                    'max_discount_amount' => $this->max_discount_amount === '' ? null : $this->max_discount_amount,
+
                     'apply_to' => $this->apply_to,
-                    'starts_at' => $this->starts_at,
-                    'ends_at' => $this->ends_at,
+
+                    // ĐÃ FIX: Dùng Carbon parse lại ngày giờ để xóa chữ 'T', chuẩn bị cho MySQL
+                    'starts_at' => \Carbon\Carbon::parse($this->starts_at)->format('Y-m-d H:i:s'),
+                    'ends_at' => \Carbon\Carbon::parse($this->ends_at)->format('Y-m-d H:i:s'),
+
                     'is_active' => $this->is_active,
                 ];
 
