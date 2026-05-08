@@ -99,7 +99,6 @@ class extends Component {
         }
 
         try {
-
             $order = $orderService->create(
                 $this->cartItems,
                 $this->totalAmount,
@@ -118,7 +117,7 @@ class extends Component {
         } catch (\Exception $e) {
             $this->swalError([
                 'title' => 'Lỗi hệ thống',
-                'text' => 'Đã có lỗi xảy ra khi tạo đơn hàng. Vui lòng thử lại sau!' . $e->getMessage()
+                'text' => 'Đã có lỗi xảy ra khi tạo đơn hàng. Vui lòng thử lại sau!'.$e->getMessage()
             ]);
             return;
         }
@@ -135,7 +134,6 @@ class extends Component {
     <section class="cart-page section-kt">
         <div class="auto-container">
             <div class="row clearfix">
-
                 <div class="column col-lg-8 col-md-12 col-sm-12">
                     <div class="cart-outer-container">
                         <table class="cart-table-premium">
@@ -153,22 +151,42 @@ class extends Component {
                                 <tr wire:key="cart-item-{{ $item->id }}">
                                     <td class="prod-column">
                                         <div class="column-box">
-                                            <figure class="prod-thumb">
+                                            <figure class="prod-thumb cart-item-figure">
                                                 <img src="{{ $item->menuItem->thumbnail_url }}" alt="{{ $item->menuItem->name }}">
+
+                                                @if($item->menuItem->activePromotion && $item->menuItem->discounted_price < $item->menuItem->price)
+                                                    <span class="promo-badge-top-right"
+                                                          title="{{ $item->menuItem->activePromotion->description ?? 'Chương trình khuyến mãi từ Restoria' }}"
+                                                          data-bs-toggle="tooltip"
+                                                          data-bs-placement="top"
+                                                          x-data
+                                                          x-init="new bootstrap.Tooltip($el)">
+                                                            <i class="fas fa-tag mr-1"></i>{{ $item->menuItem->activePromotion->name }}
+                                                        </span>
+                                                @endif
                                             </figure>
-                                            <h6 class="mt-2">{{ $item->menuItem->name }}</h6>
+
+                                            <h6 class="mt-3 mb-1">{{ $item->menuItem->name }}</h6>
+
                                             <input type="text"
                                                    placeholder="Ghi chú (VD: ít cay, không hành...)"
-                                                   class="form-control form-control-sm bg-transparent text-white border-secondary"
+                                                   class="form-control form-control-sm bg-transparent text-white border-secondary mt-1"
                                                    style="font-size: 12px; padding: 4px 8px; max-width: 200px;"
                                                    value="{{ $item->note }}"
                                                    wire:change="updateItemNote({{ $item->id }}, $event.target.value)">
                                         </div>
                                     </td>
-                                    <td class="price-column">{{ number_format($item->menuItem->price) }}đ</td>
+                                    <td class="price-column">
+                                        @if($item->menuItem->discounted_price < $item->menuItem->price)
+                                            <del class="text-muted d-block" style="font-size: 12px;">{{ number_format($item->menuItem->price) }}đ</del>
+                                            <span class="text-danger font-weight-bold">{{ number_format($item->menuItem->discounted_price) }}đ</span>
+                                        @else
+                                            <span>{{ number_format($item->menuItem->price) }}đ</span>
+                                        @endif
+                                    </td>
                                     <td class="qty-column">
                                         <div class="quantity-spinner-premium">
-                                            <button type="button" wire:click="decrement({{ $item->id }}, {{ $item->menu_item_id }})" class="minus-btn">
+                                            <button type="button" wire:click="decrement({{ $item->id }}, {{ $item->menuItem->id }})" class="minus-btn">
                                                 <i class="fas fa-minus"></i>
                                             </button>
                                             <input type="text" value="{{ $item->quantity }}" readonly class="qty-input">
@@ -178,7 +196,7 @@ class extends Component {
                                         </div>
                                     </td>
                                     <td class="sub-total">
-                                        {{ number_format($item->menuItem->price * $item->quantity) }}đ
+                                        {{ number_format($item->menuItem->discounted_price * $item->quantity) }}đ
                                     </td>
                                     <td class="remove-column">
                                         <button wire:click="removeItem({{ $item->id }})" class="remove-btn"
@@ -215,7 +233,8 @@ class extends Component {
                             </ul>
 
                             <div class="order-note-box mt-4 mb-3">
-                                <label class="text-white mb-2" style="font-size: 14px;"><i class="far fa-edit mr-2"></i>Ghi chú đơn hàng</label>
+                                <label class="text-white mb-2" style="font-size: 14px;"><i class="far fa-edit mr-2"></i>Ghi
+                                    chú đơn hàng</label>
                                 <textarea wire:model="orderNote"
                                           class="form-control bg-transparent text-white border-secondary rounded"
                                           rows="3"

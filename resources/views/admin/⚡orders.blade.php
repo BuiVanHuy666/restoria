@@ -204,8 +204,17 @@ class extends Component {
                                 <img src="{{ $item->menuItem->thumbnail_url ?? asset('images/default-food.png') }}" class="w-12 h-12 rounded object-cover" alt="Food">
                                 <div>
                                     <div class="font-medium text-sm">{{ $item->menuItem->name ?? 'Món ăn đã bị xóa' }}</div>
-                                    <div class="text-xs text-zinc-500">{{ number_format($item->original_price) }}đ
-                                        x {{ $item->quantity }}</div>
+
+                                    <div class="text-xs text-zinc-500 flex items-center gap-2 mt-0.5">
+                                        @if($item->discount_amount > 0)
+                                            <del class="text-zinc-400">{{ number_format($item->original_price) }}đ</del>
+                                        @endif
+
+                                        <span class="{{ $item->discount_amount > 0 ? 'text-rose-500 font-medium' : '' }}">
+                                            {{ number_format($item->item_price) }}đ
+                                        </span>
+                                        <span>x {{ $item->quantity }}</span>
+                                    </div>
 
                                     @if($item->note)
                                         <div class="text-xs text-amber-600 dark:text-amber-400 mt-1 italic flex items-center gap-1">
@@ -233,10 +242,19 @@ class extends Component {
                         <span>Tạm tính món:</span>
                         <span>{{ number_format($selectedOrder->subtotal) }}đ</span>
                     </div>
+
+                    @if($selectedOrder->discount > 0)
+                        <div class="flex justify-between text-rose-500">
+                            <span>Khuyến mãi:</span>
+                            <span>-{{ number_format($selectedOrder->discount) }}đ</span>
+                        </div>
+                    @endif
+
                     <div class="flex justify-between text-zinc-500">
                         <span>Phí giao hàng:</span>
                         <span>{{ number_format($selectedOrder->shipping_fee) }}đ</span>
                     </div>
+
                     <div class="flex justify-between font-bold text-lg pt-2 border-t border-zinc-200 dark:border-zinc-700">
                         <span>Tổng cộng:</span>
                         <span class="text-emerald-600">{{ number_format($selectedOrder->total_amount) }}đ</span>

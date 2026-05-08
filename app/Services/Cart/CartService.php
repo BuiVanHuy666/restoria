@@ -18,7 +18,7 @@ class CartService
         return $this->getOrCreateCart()->items()->with('menuItem')->get();
     }
 
-    public function add(int $productId, int $quantity = 1)
+    public function add(int $productId, int $quantity = 1): void
     {
         $cart = $this->getOrCreateCart();
 
@@ -43,7 +43,7 @@ class CartService
     {
         $items = $this->getCartItems();
         return $items->sum(function ($item) {
-            return $item->menuItem->price * $item->quantity;
+            return $item->menuItem->discounted_price * $item->quantity;
         });
     }
 

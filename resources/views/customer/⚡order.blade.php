@@ -169,7 +169,21 @@ class extends Component {
                                                     <img src="{{ $item->menuItem->thumbnail_url ?? asset('images/default-food.png') }}" alt="{{ $item->menuItem->name ?? 'Món ăn' }}" class="rounded mr-3" style="width: 50px; height: 50px; object-fit: cover;">
                                                     <div>
                                                         <span class="d-block font-weight-bold">{{ $item->menuItem->name ?? 'Món ăn đã bị xóa' }}</span>
-                                                        <small class="text-muted">{{ number_format($item->item_price) }}đ</small>
+
+                                                        <div class="d-flex align-items-center mt-1" style="gap: 6px;">
+                                                            @if($item->discount_amount > 0)
+                                                                <del class="text-muted" style="font-size: 11px;">{{ number_format($item->original_price) }}đ</del>
+                                                                <small class="text-danger font-weight-bold">{{ number_format($item->item_price) }}đ</small>
+                                                            @else
+                                                                <small class="text-muted">{{ number_format($item->item_price) }}đ</small>
+                                                            @endif
+                                                        </div>
+
+                                                        @if($item->note)
+                                                            <small class="d-block mt-1 font-italic" style="color: #c9ab81; font-size: 11px;">
+                                                                <i class="fas fa-comment-alt mr-1"></i>* {{ $item->note }}
+                                                            </small>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
@@ -186,10 +200,19 @@ class extends Component {
                                     <span class="text-muted">Tạm tính món:</span>
                                     <span>{{ number_format($selectedOrder->subtotal) }}đ</span>
                                 </div>
+
+                                @if($selectedOrder->discount > 0)
+                                    <div class="d-flex justify-content-between mb-2 text-danger">
+                                        <span>Khuyến mãi:</span>
+                                        <span>-{{ number_format($selectedOrder->discount) }}đ</span>
+                                    </div>
+                                @endif
+
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">Phí giao hàng:</span>
                                     <span>{{ number_format($selectedOrder->shipping_fee) }}đ</span>
                                 </div>
+
                                 <div class="d-flex justify-content-between mt-3">
                                     <span class="text-uppercase font-weight-bold" style="color: #c9ab81;">Tổng thanh toán:</span>
                                     <span class="font-weight-bold" style="font-size: 18px; color: #c9ab81;">{{ number_format($selectedOrder->total_amount) }}đ</span>

@@ -77,6 +77,11 @@ return [
             'label' => 'Khách hàng',
             'icon' => 'users',
             'route' => 'admin.customer'
+        ],
+        [
+            'label' => 'Thư viện ảnh',
+            'icon' => 'photo',
+            'route' => 'admin.gallery'
         ]
     ]
 
