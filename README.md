@@ -1,58 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍽️ Restoria - My Restaurant Side Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Chào mừng bạn đến với Restoria! Đây là dự án cá nhân do tôi xây dựng trong quá trình tự học và nghiên cứu về phát triển Website, đặc biệt là lập trình Back-end. Dự án này là nơi tôi thực hành sử dụng hệ sinh thái Laravel, học cách cấu trúc thư mục rõ ràng và từng bước làm quen với nghệ thuật viết code SOLID.
 
-## About Laravel
+## 🎯 Mục tiêu dự án
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* **Thực hành Laravel & Livewire:** Tạo ra trải nghiệm UI/UX mượt mà, không cần reload trang.
+* **Học cách viết Code sạch:** Tổ chức thư mục rõ ràng, tách biệt logic thông qua Form Request, Enums và Model Casting.
+* **Xử lý luồng nghiệp vụ thực tế:** Quản lý menu, giỏ hàng, và tích hợp thanh toán trực tuyến.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Stack công nghệ đã sử dụng
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Core:** PHP 8.3 & Laravel 13.
+* **Front-end:** Livewire 4.2, Tailwind CSS 4.0 & Flux UI.
+* **Database:** MySQL.
+* **Security & Auth:** Laravel Socialite (Google Login).
+* **Xử lý hình ảnh:** Intervention Image v4 (Tối ưu hóa ảnh WebP).
+* **Thanh toán:** Tích hợp cổng VNPay.
+* **Thông báo:** SweetAlert2 (`sweetalert2/laravel`).
 
-## Learning Laravel
+## ✨ Các tính năng đã hoàn thiện
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🔐 Xác thực & Quản lý người dùng (Authentication)
+Dự án được xây dựng một luồng xác thực bảo mật và toàn diện:
+* **Xác thực cơ bản:** Đầy đủ các tính năng Đăng ký, Đăng nhập và Đăng xuất.
+* **Quên mật khẩu:** Hỗ trợ gửi link xác nhận qua email để đặt lại mật khẩu mới an toàn.
+* **Xác thực Email:** Yêu cầu người dùng xác nhận địa chỉ email (Email Verification) để bảo vệ tài khoản.
+* **Social Auth:** Đăng nhập nhanh bằng mạng xã hội (Google) thông qua Laravel Socialite.
+* **Bảo toàn dữ liệu:** Áp dụng Soft Deletes (xóa mềm) và cờ trạng thái `is_active` để quản lý người dùng mà không làm mất dữ liệu lịch sử.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🛒 Dành cho khách hàng
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* **Đặt bàn trực tuyến:** Form đặt bàn với tính năng tự động điền (Auto-fill) thông tin (tên, số điện thoại) nếu khách hàng đã đăng nhập.
+* **Đặt món Online:** Duyệt menu món ăn và quản lý giỏ hàng.
+* **Thanh toán VNPay:** Luồng thanh toán an toàn, trả kết quả thông qua Controller và hiển thị thông báo bằng SweetAlert2.
 
-## Agentic Development
+### 🛠️ Hệ thống quản trị (Admin Dashboard)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* **Quản lý đặt bàn:** Xem danh sách khách hàng, cập nhật trạng thái (Pending, Confirmed, Completed, Cancelled) bằng đối tượng **Enum** chuyên nghiệp.
+* **Search & Filter:** Tìm kiếm khách hàng theo tên, số điện thoại và lọc theo trạng thái ngay lập tức (Real-time).
+* **Quản lý Menu:** CRUD món ăn và danh mục thực đơn.
 
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+*Dự án này vẫn đang trong quá trình nâng cấp. Mình sẽ tiếp tục cập nhật thêm một số tính năng như Cache, gửi mail khi đặt bàn và đặt món, ... mới vào code trong tương lai!*
