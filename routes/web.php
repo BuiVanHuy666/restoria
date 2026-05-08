@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReservationController;
 use App\Models\Category;
 use App\Models\MenuItem;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +70,9 @@ Route::get('/dat-ban', function () {
     return view('pages.book-table');
 })->name('client.book-table');
 
-Route::get('/payment/callback', [\App\Http\Controllers\PaymentController::class, 'vnpayReturn'])->name('payment.vnpay_return');
+Route::post('/dat-ban', [ReservationController::class, 'store'])->name('client.book-table.store');
+
+Route::get('/payment/callback', [PaymentController::class, 'vnpayReturn'])->name('payment.vnpay_return');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/customer.php';

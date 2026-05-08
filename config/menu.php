@@ -82,6 +82,11 @@ return [
             'label' => 'Thư viện ảnh',
             'icon' => 'photo',
             'route' => 'admin.gallery'
+        ],
+        [
+            'label' => 'Đặt bàn',
+            'icon' => 'identification',
+            'route' => 'admin.reservation'
         ]
     ]
 

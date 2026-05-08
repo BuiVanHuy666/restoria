@@ -21,17 +21,11 @@
         @foreach(config('menu.admin') as $item)
             <flux:navlist.item icon="{{$item['icon']}}" wire:navigate wire:current href="{{ route($item['route']) }}">{{ $item['label'] }}</flux:navlist.item>
         @endforeach
-        <flux:navlist.group expandable heading="Hệ thống" class="mt-4">
-            <flux:navlist.item href="#">Nhân viên</flux:navlist.item>
-            <flux:navlist.item href="#">Báo cáo doanh thu</flux:navlist.item>
-            <flux:navlist.item href="#">Cài đặt chung</flux:navlist.item>
-        </flux:navlist.group>
     </flux:navlist>
 
     <flux:spacer/>
 
     <flux:navlist variant="outline">
-        <flux:navlist.item icon="cog-6-tooth" href="#">Tài khoản của tôi</flux:navlist.item>
         <form method="POST" action="{{ route('logout') }}" class="w-full">
             @csrf
             @method('DELETE')
