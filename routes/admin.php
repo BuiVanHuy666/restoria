@@ -17,4 +17,6 @@ Route::prefix('quan-tri')
            ->name('admin.promotion');
        Route::livewire('thu-vien', 'admin::gallery')
            ->name('admin.gallery');
+       Route::livewire('dat-ban', 'admin::reservation')
+           ->name('admin.reservation');
     });
